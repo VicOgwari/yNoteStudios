@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="notes"
+        android:id="@+id/personalNotes"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_create_24"
+        />
+
+    <item
+        android:title="Studio mode"
+        android:id="@+id/mode"
+        app:showAsAction="ifRoom"/>
+
+
+    <item
+        android:title="Editable"
+        android:id="@+id/editable"
+        app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#CCCFCFCF"
+    android:id="@+id/metaDataRel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Dialogs.DocUploaderPopUp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/scrollModeDoc"
+                android:layout_width="30dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#F3EBD2"
+                android:src="@drawable/ic_lock_open" />
+
+            <TextView
+                android:id="@+id/docTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:maxEms="7"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:text="Document Details"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold|normal" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:layout_marginBottom="3dp"
+            android:background="#000" />
+
+        <com.midland.ynote.Utilities.CustomScrollView
+            android:id="@+id/docMetaDateSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/docImageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    app:cardCornerRadius="9dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:background="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                        <com.github.barteksc.pdfviewer.PDFView
+                            android:id="@+id/picBitmap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/noPreview"
+                            android:visibility="gone"
+                            android:text="@string/preview_unavailable"
+                            android:textColor="#fff"
+                            android:background="#000"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"/>
+
+                        <ProgressBar
+                            android:id="@+id/uploadProgress1"
+                            android:layout_width="114dp"
+                            android:layout_height="114dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="92dp"
+                            android:minWidth="290dp"
+                            android:minHeight="290dp"
+                            android:visibility="gone" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="@string/institution"
+                        android:textColor="#000"
+                        android:textSize="22sp"
+                        android:textStyle="bold|normal" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:background="#474747"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        app:cardCornerRadius="9dp">
+
+                        <Spinner
+                            android:id="@+id/institutionSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_margin="5dp"
+                            android:background="#000"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textColor="#ffff" />
+
+                        <EditText
+                            android:id="@+id/institutionSpinnerET"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"                        android:ellipsize="end"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:maxLines="1"
+                            android:visibility="gone"
+                            android:textColor="#F50057"
+                            android:textSize="19sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="School"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold|normal" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:background="#474747"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        app:cardCornerRadius="9dp">
+
+                        <Spinner
+                            android:id="@+id/mainFieldSpinnerTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_margin="5dp"
+                            android:background="#000"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textColor="#ffff" />
+
+                        <TextView
+                            android:id="@+id/mainFieldSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:ellipsize="end"
+                            android:background="#000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:maxLines="1"
+                            android:textColor="#ffff"
+                            android:textSize="19sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="Sub-Field"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold|normal" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:background="#474747"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="9dp"
+                        android:padding="8dp"
+                        app:cardCornerRadius="9dp">
+
+                        <Spinner
+                            android:id="@+id/subFieldSpinnerTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:background="#000"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textColor="#ffff"
+                            android:textSize="19sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/subFieldSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:ellipsize="end"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:maxLines="1"
+                            android:background="#000"
+                            android:textColor="#fff"
+                            android:textSize="19sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="3dp"
+                        android:padding="5dp"
+                        app:cardCornerRadius="3dp"
+                        app:cardElevation="4dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Knowledge Base"
+                            android:textColor="#000"
+                            android:background="#CC83ED83"
+                            android:textSize="18sp"
+                            android:textStyle="bold|normal" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:background="@drawable/edit_text_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/masters"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Masters" />
+
+                                <CheckBox
+                                    android:id="@+id/phd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="phD" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/yr1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Yr 1" />
+
+                                <CheckBox
+                                    android:id="@+id/yr2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Yr 2" />
+
+                                <CheckBox
+                                    android:id="@+id/yr3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Yr 3" />
+
+                                <CheckBox
+                                    android:id="@+id/yr4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yr 4" />
+
+                                <CheckBox
+                                    android:id="@+id/yr5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Yr 5" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/cert"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Certificate" />
+
+                                <CheckBox
+                                    android:id="@+id/dip"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Diploma" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="9dp"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/bridging"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Bridging course" />
+
+                                <CheckBox
+                                    android:id="@+id/higherDip"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:text="Higher diploma" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:visibility="gone"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        app:cardCornerRadius="9dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/relevanceRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:spinnerMode="dropdown" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:background="#CC83ED83"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="@string/semester"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:background="#474747"
+                        android:padding="8dp"
+                        app:cardCornerRadius="9dp">
+
+                        <Spinner
+                            android:id="@+id/semSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:background="#000"
+                            android:ellipsize="end"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:maxLines="1"
+                            android:textColor="#ffff" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#000" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="#000" />
+
+                    <androidx.cardview.widget.CardView
+                        android:visibility="gone"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:id="@+id/unitCodeEditText"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="UCU 100" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:visibility="gone"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:padding="5dp">
+
+
+                        <EditText
+                            android:id="@+id/docDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:ems="36"
+                            android:hint="Any other detail..."
+                            android:inputType="textMultiLine"
+                            android:maxLines="6" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <com.midland.ynote.Utilities.CustomViewPager
+                    android:id="@+id/metaDataVP"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="700dp"/>
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/app_bar"
+                    android:visibility="gone"
+                    android:layout_below="@+id/topBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#493D39"
+                    android:fitsSystemWindows="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:theme="@style/AppTheme.AppBarOverlay">
+
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#000"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/pictorials"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pictorials" />
+
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/studioLectures"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/documents" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <Button
+                    android:id="@+id/publishDoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:background="#C6FF00"
+                    android:text="@string/next"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+        </com.midland.ynote.Utilities.CustomScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

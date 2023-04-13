@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:id="@+id/photoDocRel"
+    tools:context=".Activities.PhotoDoc">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/touchIV"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photoDocsRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/tw__composer_deep_gray" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/tw__composer_black"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:src="@drawable/ic_play_narration" />
+
+
+
+        <ImageButton
+            android:id="@+id/addPic"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

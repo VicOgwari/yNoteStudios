@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Doc details"
+        android:id="@+id/docDetails"/>
+
+    <item
+        android:title="Adjust cover"
+        android:id="@+id/adjustCover"/>
+
+    <item
+        android:title="Remove cover"
+        android:id="@+id/removeCover"/>
+
+</menu>

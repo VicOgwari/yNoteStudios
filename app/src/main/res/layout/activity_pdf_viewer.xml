@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/pdfViewConst"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Activities.PdfViewerReadMode">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize">
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#050505"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <ImageView
+                    android:id="@+id/publishDocIm"
+                    android:src="@drawable/ic_baseline_cloud_uploaded"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="150dp"
+                    android:layout_width="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_height="30dp"/>
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <WebView
+            android:id="@+id/webViewReadMode"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfViewReadMode"
+            android:layout_below="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/adView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/noPreview"
+            android:visibility="gone"
+            android:text="@string/no_preview"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-1383978019158618/5904737604">
+
+        </com.google.android.gms.ads.AdView>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

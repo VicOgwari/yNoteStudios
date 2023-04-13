@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.midland.ynote.Fragments.FirstDetails">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+        android:background="#CC3E3E3E"
+      android:orientation="vertical">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:padding="4dp"
+          android:text="@string/institution"
+          android:textColor="#000"
+          android:textSize="22sp"
+          android:textStyle="bold|normal" />
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:background="#474747"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:padding="8dp"
+          app:cardCornerRadius="9dp">
+
+          <Spinner
+              android:id="@+id/institutionSpinner"
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:layout_margin="5dp"
+              android:background="#000"
+              android:ellipsize="end"
+              android:maxLines="1"
+              android:textColor="#ffff" />
+
+          <EditText
+              android:id="@+id/institutionSpinnerET"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_marginTop="2dp"
+              android:layout_marginBottom="2dp"                        android:ellipsize="end"
+              android:gravity="center_horizontal|center_vertical"
+              android:maxLines="1"
+              android:visibility="gone"
+              android:textColor="#F50057"
+              android:textSize="19sp" />
+
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="3dp"
+          android:gravity="center"
+          android:padding="4dp"
+          android:text="@string/school"
+          android:textColor="#000"
+          android:textSize="20sp"
+          android:textStyle="bold|normal" />
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:background="#474747"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:padding="8dp"
+          app:cardCornerRadius="9dp">
+
+          <Spinner
+              android:id="@+id/mainFieldSpinnerTV"
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:layout_margin="5dp"
+              android:background="#000"
+              android:ellipsize="end"
+              android:maxLines="1"
+              android:textColor="#ffff" />
+
+          <TextView
+              android:id="@+id/mainFieldSpinner"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_margin="5dp"
+              android:ellipsize="end"
+              android:background="#000"
+              android:gravity="center_horizontal|center_vertical"
+              android:maxLines="1"
+              android:textColor="#ffff"
+              android:textSize="19sp" />
+
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:padding="4dp"
+          android:text="@string/department"
+          android:textColor="#000"
+          android:textSize="15sp"
+          android:textStyle="bold|normal" />
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:background="#474747"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_margin="9dp"
+          android:padding="8dp"
+          app:cardCornerRadius="9dp">
+
+          <Spinner
+              android:id="@+id/subFieldSpinnerTV"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_margin="5dp"
+              android:background="#000"
+              android:ellipsize="end"
+              android:maxLines="1"
+              android:textColor="#ffff"
+              android:textSize="19sp"
+              android:visibility="gone" />
+
+          <TextView
+              android:id="@+id/subFieldSpinner"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_margin="5dp"
+              android:ellipsize="end"
+              android:gravity="center_horizontal|center_vertical"
+              android:maxLines="1"
+              android:background="#000"
+              android:textColor="#fff"
+              android:textSize="19sp" />
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12dp"
+          android:layout_marginBottom="3dp"
+          android:padding="5dp"
+          app:cardCornerRadius="3dp"
+          app:cardElevation="4dp">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:padding="4dp"
+              android:text="@string/knowledge_base"
+              android:textColor="#000"
+              android:background="#CC83ED83"
+              android:textSize="18sp"
+              android:textStyle="bold|normal" />
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="350dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="4dp"
+          android:padding="5dp">
+
+          <LinearLayout
+              android:background="@drawable/edit_text_background"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:orientation="horizontal">
+
+                  <CheckBox
+                      android:id="@+id/masters"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="@string/masters" />
+
+                  <CheckBox
+                      android:id="@+id/phd"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="@string/phd" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="9dp"
+                  android:gravity="center_horizontal"
+                  android:orientation="horizontal">
+
+                  <CheckBox
+                      android:id="@+id/yr1"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Yr 1" />
+
+                  <CheckBox
+                      android:id="@+id/yr2"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Yr 2" />
+
+                  <CheckBox
+                      android:id="@+id/yr3"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Yr 3" />
+
+                  <CheckBox
+                      android:id="@+id/yr4"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Yr 4" />
+
+                  <CheckBox
+                      android:id="@+id/yr5"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Yr 5" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="9dp"
+                  android:gravity="center_horizontal"
+                  android:orientation="horizontal">
+
+                  <CheckBox
+                      android:id="@+id/cert"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Certificate" />
+
+                  <CheckBox
+                      android:id="@+id/dip"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Diploma" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="9dp"
+                  android:gravity="center_horizontal"
+                  android:orientation="horizontal">
+
+                  <CheckBox
+                      android:id="@+id/bridging"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Bridging course" />
+
+                  <CheckBox
+                      android:id="@+id/higherDip"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="6dp"
+                      android:text="Higher diploma" />
+
+              </LinearLayout>
+
+
+          </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:visibility="gone"
+          android:layout_width="350dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:padding="8dp"
+          app:cardCornerRadius="9dp">
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/relevanceRV"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_marginTop="8dp"
+              android:clickable="true"
+              android:focusable="true"
+              android:spinnerMode="dropdown" />
+
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="15dp"
+          android:background="#CC83ED83"
+          android:gravity="center"
+          android:padding="4dp"
+          android:text="@string/semester"
+          android:textColor="#000"
+          android:textSize="15sp"
+          android:textStyle="bold" />
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          android:layout_gravity="center"
+          android:layout_margin="3dp"
+          android:background="#474747"
+          android:padding="8dp"
+          app:cardCornerRadius="9dp">
+
+          <Spinner
+              android:id="@+id/semSpinner"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              android:layout_gravity="center"
+              android:layout_margin="5dp"
+              android:background="#000"
+              android:ellipsize="end"
+              android:gravity="center_horizontal|center_vertical"
+              android:maxLines="1"
+              android:textColor="#ffff" />
+
+
+      </androidx.cardview.widget.CardView>
+
+
+      <View
+          android:layout_width="wrap_content"
+          android:layout_height="2dp"
+          android:layout_marginTop="8dp"
+          android:background="#000" />
+
+      <View
+          android:layout_width="wrap_content"
+          android:layout_height="2dp"
+          android:layout_marginTop="2dp"
+          android:background="#000" />
+
+      <androidx.cardview.widget.CardView
+          android:visibility="gone"
+          android:layout_width="250dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:padding="5dp">
+
+          <EditText
+              android:id="@+id/unitCodeEditText"
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:hint="UCU 100" />
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:visibility="gone"
+          android:layout_width="300dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="15dp"
+          android:padding="5dp">
+
+
+          <EditText
+              android:id="@+id/docDetails"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ellipsize="end"
+              android:ems="36"
+              android:hint="@string/any_other_detail"
+              android:inputType="textMultiLine"
+              android:maxLines="6" />
+
+      </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#000"
+            android:text="@string/next"
+            android:textColor="#fff"
+            android:layout_marginBottom="15dp"
+            android:textSize="25sp" />
+  </LinearLayout>
+
+</FrameLayout>

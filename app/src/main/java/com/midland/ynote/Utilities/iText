@@ -1,0 +1,889 @@
+
+//Item touch listener
+package com.example.ynot.Adapters;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.net.Uri;
+import android.os.SystemClock;
+import android.view.GestureDetector;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.ynot.Activities.PhotoDoc;
+import com.example.ynot.Fragments.StudioBitmaps;
+import com.example.ynot.Objects.PictorialObject;
+import com.example.ynot.R;
+import com.example.ynot.Utilities.FilingSystem;
+import com.example.ynot.Utilities.ItemTouchAdapter;
+import com.example.ynot.Utilities.Projector;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
+
+
+public class PictorialAdapter extends RecyclerView.Adapter<PictorialAdapter.PicAdapterVH>
+implements ItemTouchAdapter {
+
+    Context con;
+    ArrayList<PictorialObject> pictorialObjects;
+    String fileName, outPutFile;
+    ImageButton fab;
+    Activity a;
+    Boolean isRecording = false, isPlaying = false;
+    private MediaRecorder mediaRecorder;
+    private MediaPlayer mediaPlayer;
+    private File narration;
+    private PhotoDoc photoDoc;
+    private StudioBitmaps studioBitmaps;
+    private ItemTouchHelper itemTouchHelper;
+
+    public PictorialAdapter(Context con, ArrayList<PictorialObject> pictorialObjects,
+                            String fileName, ImageButton fab, Activity a, PhotoDoc photoDoc, StudioBitmaps studioBitmaps) {
+        this.con = con;
+        this.pictorialObjects = pictorialObjects;
+        this.fileName = fileName;
+        this.fab = fab;
+        this.a = a;
+        this.photoDoc = photoDoc;
+        this.studioBitmaps = studioBitmaps;
+    }
+
+    @NonNull
+    @Override
+    public PicAdapterVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PicAdapterVH(LayoutInflater.from(con).inflate(R.layout.photo_doc_item, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final PicAdapterVH holder, final int position) {
+
+        final PictorialObject pictorialObject = pictorialObjects.get(position);
+        holder.narration.setBackgroundColor(Color.YELLOW);
+        holder.saveEdits.setBackgroundColor(Color.BLACK);
+
+
+        holder.photoDocsOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(con, holder.photoDocsOptions);
+                popupMenu.getMenuInflater().inflate(R.menu.pictorial_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.delete:
+
+                                break;
+
+                            case R.id.discardAudio:
+                                if (pictorialObject.getNarrationPath() == null){
+                                    Toast.makeText(con, "No narration yet...", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    PhotoDoc.Companion.editDesc(con, fileName, position, pictorialObject.getPicDescription(), PictorialAdapter.this, null);
+                                    Toast.makeText(con, "Narration discarded.", Toast.LENGTH_SHORT).show();
+                                }
+                                break;
+
+                            case R.id.selectAudio:
+                                photoDoc.outSource(con, position, pictorialObject.getPicDescription());
+                                break;
+
+                            case R.id.projectSegment:
+                                Intent intent = new Intent(con, Projector.class);
+                                ArrayList<PictorialObject> pictorials = new ArrayList<>();
+                                pictorials.add(pictorialObject);
+                                intent.putExtra("photoDocs", pictorials);
+                                con.startActivity(intent);
+
+                                break;
+                        }
+
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+
+
+            }
+        });
+
+        holder.photoDocItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(con, pictorialObject.getNarrationPath(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.narration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ContextCompat.checkSelfPermission(con, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(con, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.READ_EXTERNAL_STORAGE)
+                            && ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        Snackbar.make(fab, "Permission", Snackbar.LENGTH_INDEFINITE)
+                                .setAction("ENABLE", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        ActivityCompat.requestPermissions(a, new String[]{
+                                                Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO
+                                        }, 7);
+                                    }
+                                }).show();
+                    } else {
+                        ActivityCompat.requestPermissions(a, new String[]{
+                                Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO
+                        }, 7);
+                    }
+                } else {
+                    if (!new File(pictorialObject.getNarrationPath()).exists() || pictorialObject.getNarrationPath().equals("")) {
+                        if (isRecording) {
+                            isRecording = false;
+                            stopRecording();
+                            holder.narTimer.stop();
+                            holder.narTimer.setVisibility(View.GONE);
+                            holder.narration.setBackgroundColor(Color.GREEN);
+                            PhotoDoc.Companion.editDesc(con, fileName, position, pictorialObject.getPicDescription(), PictorialAdapter.this, outPutFile);
+                            Toast.makeText(con, "Narration saved", Toast.LENGTH_SHORT).show();
+                            PictorialAdapter.this.notifyDataSetChanged();
+                        } else {
+                            if (checkAudioPermission()) {
+                                isRecording = true;
+                                startRecording();
+                                holder.narTimer.setBase(SystemClock.elapsedRealtime());
+                                holder.narTimer.start();
+                                holder.narration.setBackgroundColor(Color.RED);
+                                holder.narTimer.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    } else {
+                        narration = new File(pictorialObject.getNarrationPath());
+                        if (isPlaying) {
+                            playNarration(narration, holder.narTimer);
+                            holder.narTimer.setVisibility(View.VISIBLE);
+                            holder.narTimer.setBase(SystemClock.elapsedRealtime());
+                            holder.narTimer.start();
+                        } else {
+                            stopNarration();
+                            playNarration(narration, holder.narTimer);
+                            holder.narTimer.stop();
+                            holder.narTimer.setVisibility(View.GONE);
+                        }
+
+                    }
+                }
+
+
+
+
+            }
+        });
+        holder.saveEdits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.editPreviewDesc.getVisibility() == View.GONE) {
+                    holder.editPreviewDesc.setText(holder.previewDescription.getText().toString());
+                    holder.editPreviewDesc.setVisibility(View.VISIBLE);
+                    holder.previewDescription.setVisibility(View.GONE);
+                    holder.saveEdits.setBackgroundColor(Color.GRAY);
+                    if (fab != null) {
+                        fab.setVisibility(View.INVISIBLE);
+                    }
+                } else if (holder.editPreviewDesc.getVisibility() == View.VISIBLE) {
+                    //narration is null
+                    PhotoDoc.Companion.editDesc(con, fileName, position, holder.editPreviewDesc.getText().toString(),
+                            PictorialAdapter.this, pictorialObject.getNarrationPath());
+//                PictorialAdapter.this.notifyDataSetChanged();
+                    holder.editPreviewDesc.setVisibility(View.GONE);
+                    holder.previewDescription.setVisibility(View.VISIBLE);
+                    holder.saveEdits.setBackgroundColor(Color.BLACK);
+                    holder.previewDescription.setText(pictorialObjects.get(position).getPicDescription());
+                    if (fab != null) {
+                        fab.setVisibility(View.VISIBLE);
+                    }
+                }
+
+            }
+        });
+
+        holder.previewDescription.setText(pictorialObjects.get(position).getPicDescription());
+
+        Glide.with(con).load(Uri.parse(pictorialObjects.get(position).getPicture()))
+                .thumbnail(0.5f)
+//                .transform(new CircleTransform(con))
+                .diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(holder.photoDocItem);
+
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return pictorialObjects.size();
+    }
+
+    @Override
+    public void onItemMove(int fromPos, int toPos) {
+        PictorialObject picObj = pictorialObjects.get(fromPos);
+        pictorialObjects.remove(picObj);
+        pictorialObjects.set(toPos, picObj);
+        notifyItemMoved(fromPos, toPos);
+    }
+
+    @Override
+    public void onItemSwipe(int pos) {
+        pictorialObjects.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    public class PicAdapterVH extends RecyclerView.ViewHolder
+    implements View.OnTouchListener, GestureDetector.OnGestureListener {
+        ImageView photoDocItem;
+        TextView previewDescription;
+        EditText editPreviewDesc;
+        Button saveEdits, narration, photoDocsOptions;
+        Chronometer narTimer;
+        GestureDetector gestureDetector;
+
+        public PicAdapterVH(@NonNull View itemView) {
+            super(itemView);
+
+            photoDocItem = itemView.findViewById(R.id.preview);
+            previewDescription = itemView.findViewById(R.id.prevDescription);
+            narration = itemView.findViewById(R.id.narration);
+            editPreviewDesc = itemView.findViewById(R.id.editPreviewDescription);
+            saveEdits = itemView.findViewById(R.id.submitEdit);
+            narTimer = itemView.findViewById(R.id.narrationChronometer);
+            photoDocsOptions = itemView.findViewById(R.id.photoDocsOptions);
+            gestureDetector = new GestureDetector(itemView.getContext(), this);
+
+            itemView.setOnTouchListener(this);
+
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            return false;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            itemTouchHelper.startDrag(this);
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return false;
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            gestureDetector.onTouchEvent(event);
+            return false;
+        }
+    }
+
+    private boolean checkAudioPermission() {
+        if (ActivityCompat.checkSelfPermission(con, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            ActivityCompat.requestPermissions(a, new String[]{Manifest.permission.RECORD_AUDIO}, 8);
+            return false;
+        }
+    }
+
+    private void startRecording() {
+        mediaRecorder = new MediaRecorder();
+        SimpleDateFormat smf = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+        Date now = new Date();
+        outPutFile = FilingSystem.Companion.getDubAnthems().getAbsolutePath() + "/" + "yNote_sounds_" + smf.format(now) + UUID.randomUUID().toString() + ".3gp";
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(outPutFile);
+
+        try {
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (IOException e) {
+            Toast.makeText(con, "narration file IO exception", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(con, "Recording started", Toast.LENGTH_LONG).show();
+
+    }
+
+    private void stopRecording() {
+        mediaRecorder.stop();
+        mediaRecorder.release();
+        mediaRecorder = null;
+    }
+
+    private void playNarration(File narration, final Chronometer cr) {
+        mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(narration.getAbsolutePath());
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        isPlaying = true;
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                cr.stop();
+                cr.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void stopNarration() {
+        isPlaying = false;
+    }
+
+    public void setTouchHelper(ItemTouchHelper itemTouchHelper){
+        this.itemTouchHelper = itemTouchHelper;
+    }
+}
+
+
+
+
+
+
+
+
+//Transparent watermark
+import com.itextpdf.io.font.FontProgramFactory;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfResources;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.kernel.pdf.extgstate.PdfExtGState;
+import com.itextpdf.layout.Canvas;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+
+import java.io.File;
+
+public class TransparentWatermark {
+    public static final String DEST = "./target/sandbox/stamper/transparent_watermark.pdf";
+    public static final String SRC = "./src/main/resources/pdfs/hero.pdf";
+
+    public static void main(String[] args) throws Exception {
+        File file = new File(DEST);
+        file.getParentFile().mkdirs();
+
+        new TransparentWatermark().manipulatePdf(DEST);
+    }
+
+    protected void manipulatePdf(String dest) throws Exception {
+        PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(dest));
+        PdfCanvas under = new PdfCanvas(pdfDoc.getFirstPage().newContentStreamBefore(), new PdfResources(), pdfDoc);
+        PdfFont font = PdfFontFactory.createFont(FontProgramFactory.createFont(StandardFonts.HELVETICA));
+        Paragraph paragraph = new Paragraph("This watermark is added UNDER the existing content")
+                .setFont(font)
+                .setFontSize(15);
+
+        Canvas canvasWatermark1 = new Canvas(under, pdfDoc.getDefaultPageSize())
+                .showTextAligned(paragraph, 297, 550, 1, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+        canvasWatermark1.close();
+        PdfCanvas over = new PdfCanvas(pdfDoc.getFirstPage());
+        over.setFillColor(ColorConstants.BLACK);
+        paragraph = new Paragraph("This watermark is added ON TOP OF the existing content")
+                .setFont(font)
+                .setFontSize(15);
+
+        Canvas canvasWatermark2 = new Canvas(over, pdfDoc.getDefaultPageSize())
+                .showTextAligned(paragraph, 297, 500, 1, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+        canvasWatermark2.close();
+        paragraph = new Paragraph("This TRANSPARENT watermark is added ON TOP OF the existing content")
+                .setFont(font)
+                .setFontSize(15);
+        over.saveState();
+
+        // Creating a dictionary that maps resource names to graphics state parameter dictionaries
+        PdfExtGState gs1 = new PdfExtGState();
+        gs1.setFillOpacity(0.5f);
+        over.setExtGState(gs1);
+        Canvas canvasWatermark3 = new Canvas(over, pdfDoc.getDefaultPageSize())
+                .showTextAligned(paragraph, 297, 450, 1, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+        canvasWatermark3.close();
+        over.restoreState();
+
+        pdfDoc.close();
+    }
+}
+
+
+
+//Transparent watermark 1
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.Rectangle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfPage;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.kernel.pdf.extgstate.PdfExtGState;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+
+import java.io.File;
+
+public class TransparentWatermark2 {
+    public static final String DEST = "./target/sandbox/stamper/transparent_watermark2.pdf";
+    public static final String IMG = "./src/main/resources/img/itext.png";
+    public static final String SRC = "./src/main/resources/pdfs/pages.pdf";
+
+    public static void main(String[] args) throws Exception {
+        File file = new File(DEST);
+        file.getParentFile().mkdirs();
+
+        new TransparentWatermark2().manipulatePdf(DEST);
+    }
+
+
+    protected void manipulatePdf(String dest) throws Exception {
+        PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(dest));
+        Document doc = new Document(pdfDoc);
+        PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+        Paragraph paragraph = new Paragraph("My watermark (text)")
+                .setFont(font)
+                .setFontSize(30);
+        ImageData img = ImageDataFactory.create(IMG);
+
+        float w = img.getWidth();
+        float h = img.getHeight();
+
+        PdfExtGState gs1 = new PdfExtGState().setFillOpacity(0.5f);
+
+        // Implement transformation matrix usage in order to scale image
+        for (int i = 1; i <= pdfDoc.getNumberOfPages(); i++) {
+
+            PdfPage pdfPage = pdfDoc.getPage(i);
+            Rectangle pageSize = pdfPage.getPageSizeWithRotation();
+
+            // When "true": in case the page has a rotation, then new content will be automatically rotated in the
+            // opposite direction. On the rotated page this would look as if new content ignores page rotation.
+            pdfPage.setIgnorePageRotationForContent(true);
+
+            float x = (pageSize.getLeft() + pageSize.getRight()) / 2;
+            float y = (pageSize.getTop() + pageSize.getBottom()) / 2;
+            PdfCanvas over = new PdfCanvas(pdfDoc.getPage(i));
+            over.saveState();
+            over.setExtGState(gs1);
+            if (i % 2 == 1) {
+                doc.showTextAligned(paragraph, x, y, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+            } else {
+                over.addImageWithTransformationMatrix(img, w, 0, 0, h, x - (w / 2), y - (h / 2), false);
+            }
+            over.restoreState();
+        }
+
+        doc.close();
+    }
+}
+
+
+
+//Transparent watermark 3
+package com.itextpdf.samples.sandbox.stamper;
+
+import com.itextpdf.io.font.FontProgramFactory;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.Rectangle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfPage;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.kernel.pdf.extgstate.PdfExtGState;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+
+import java.io.File;
+
+public class TransparentWatermark3 {
+    public static final String DEST = "./target/sandbox/stamper/transparent_watermark3.pdf";
+    public static final String IMG = "./src/main/resources/img/itext.png";
+    public static final String SRC = "./src/main/resources/pdfs/pages.pdf";
+
+    public static void main(String[] args) throws Exception {
+        File file = new File(DEST);
+        file.getParentFile().mkdirs();
+
+        new TransparentWatermark3().manipulatePdf(DEST);
+    }
+
+    protected void manipulatePdf(String dest) throws Exception {
+        PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC), new PdfWriter(dest));
+        Document doc = new Document(pdfDoc);
+        PdfFont font = PdfFontFactory.createFont(FontProgramFactory.createFont(StandardFonts.HELVETICA));
+        Paragraph paragraph = new Paragraph("My watermark (text)").setFont(font).setFontSize(30);
+        ImageData img = ImageDataFactory.create(IMG);
+
+        float w = img.getWidth();
+        float h = img.getHeight();
+
+        PdfExtGState gs1 = new PdfExtGState().setFillOpacity(0.5f);
+
+        // Implement transformation matrix usage in order to scale image
+        for (int i = 1; i <= pdfDoc.getNumberOfPages(); i++) {
+            PdfPage pdfPage = pdfDoc.getPage(i);
+            Rectangle pageSize = pdfPage.getPageSize();
+            float x = (pageSize.getLeft() + pageSize.getRight()) / 2;
+            float y = (pageSize.getTop() + pageSize.getBottom()) / 2;
+            PdfCanvas over = new PdfCanvas(pdfPage);
+            over.saveState();
+            over.setExtGState(gs1);
+            if (i % 2 == 1) {
+                doc.showTextAligned(paragraph, x, y, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+            } else {
+                over.addImageWithTransformationMatrix(img, w, 0, 0, h, x - (w / 2), y - (h / 2), true);
+            }
+            over.restoreState();
+        }
+
+        doc.close();
+    }
+}
+
+//Twitter
+API Key: 7NpN7RzW96PPV6GZflBDvTC3i
+API Secret Key: s63vdyrlUP4Rwg56sooxKCdMLbTb1nCXsQuXf06FpXivI0AhCQ
+Bearer Token: AAAAAAAAAAAAAAAAAAAAAECgQQEAAAAAiMUNfjbtNkSyfGopkqPVwIkgang%3DryBF4O7v8WQfAQbefFA3fohujfjD5RamBfwd3pwsqaSp9NKa15
+
+
+//DocumentLoader Java
+package com.example.ynot.Activities;
+
+import android.os.Build;
+import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.text.TextUtils;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ynot.Adapters.CommentsAdapter;
+import com.example.ynot.Dialogs.LogInSignUp;
+import com.example.ynot.Objects.CommentsObject;
+import com.example.ynot.R;
+import com.example.ynot.Utilities.FilingSystem;
+import com.example.ynot.Utilities.PdfPrint;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+public class DocumentLoader extends AppCompatActivity {
+
+    public RelativeLayout viewerRel;
+    private RelativeLayout generalDocRel;
+    public WebView docViewer;
+    public EditText docCommentET;
+    private RecyclerView docCommentRV;
+    private ProgressBar readBuffer;
+    private String finalLink, school, title;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_document_loader);
+
+        if (getIntent().getStringExtra("docUrl") != null){
+            finalLink = getIntent().getStringExtra("docUrl");
+        }else {
+            Toast.makeText(this, "Something's missing..", Toast.LENGTH_SHORT).show();
+        }
+
+        if (getIntent().getStringExtra("school") != null){
+            school = getIntent().getStringExtra("school");
+        }
+
+        if (getIntent().getStringExtra("title") != null){
+            title = getIntent().getStringExtra("title");
+        }
+
+
+        viewerRel = findViewById(R.id.docViewerRel);
+        docViewer = findViewById(R.id.docView);
+        readBuffer = findViewById(R.id.readBuffer);
+        ImageButton closeViewer = findViewById(R.id.closeDocView);
+        ImageButton docComments = findViewById(R.id.docComments);
+        ImageButton refresh = findViewById(R.id.refresh);
+        ImageButton saveDoc = findViewById(R.id.saveDoc);
+        docCommentRV = findViewById(R.id.docCommentsRV);
+        Button addComment = findViewById(R.id.addCommentBtn);
+        EditText docCommentET = findViewById(R.id.docCommentET);
+        View bottomSheet = findViewById(R.id.comments_sheet);
+
+
+        getComments();
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        closeViewer.setOnClickListener(v -> onBackPressed());
+
+        docViewer.getSettings().setJavaScriptEnabled(true);
+        docViewer.getSettings().setBuiltInZoomControls(true);
+        docViewer.zoomIn();
+        docViewer.zoomOut();
+
+        refresh.setOnClickListener(v -> {
+            getComments();
+            docViewer.loadUrl(finalLink);
+        });
+
+        docViewer.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.getUrl().toString());
+                }else {
+                    Toast.makeText(getApplicationContext(), "Api issues", Toast.LENGTH_SHORT).show();
+                }
+                return super.shouldOverrideUrlLoading(view, request);
+            }
+        });
+        docViewer.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100){
+                    readBuffer.setVisibility(View.INVISIBLE);
+                }else {
+                    readBuffer.setVisibility(View.VISIBLE);
+                }
+            }
+
+        });
+        docViewer.loadUrl(finalLink);
+
+        saveDoc.setOnClickListener(v -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                createWebPrintJob(docViewer);
+            }else {
+
+            }
+        });
+
+        docComments.setOnClickListener(v -> {
+            if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                //Retrieve comments from db & place them on RV
+
+            } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        });
+
+        addComment.setOnClickListener(v -> {
+            if (docCommentET.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Say something...", Toast.LENGTH_SHORT).show();
+            } else {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user == null){
+                    LogInSignUp logInSignUp = new LogInSignUp(DocumentLoader.this);
+                    logInSignUp.show();
+                }else {
+                    postComment(user, docCommentET);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (docViewer.canGoBack()){
+            docViewer.goBack();
+        }else {
+            super.onBackPressed();
+            DocumentLoader.this.finish();
+        }
+    }
+
+    private void postComment(FirebaseUser user, EditText docCommentET) {
+        DocumentReference documentReference = FirebaseFirestore.getInstance()
+                .collection("Content")
+                .document("Documents")
+                .collection((replacer(school)))
+                .document(replacer(title));
+
+
+        CollectionReference commentsRef = documentReference.collection("Comments");
+        String comment = docCommentET.getText().toString().trim();
+        if (TextUtils.isEmpty(comment)) {
+            Toast.makeText(getApplicationContext(), "Say something....", Toast.LENGTH_SHORT).show();
+        }
+
+        Calendar callForDate = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+        String saveCurrentDate = currentDate.format(callForDate.getTime());
+
+        Calendar callForTime = Calendar.getInstance();
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        String saveCurrentTime = currentTime.format(callForTime.getTime());
+
+        String uId = user.getUid();
+        String userName = user.getDisplayName();
+
+        commentsRef.document(String.valueOf(System.currentTimeMillis()))
+                .set(new CommentsObject(userName + "_-_" + uId + "_-_" + comment + "_-_" + saveCurrentDate + "_-_" + saveCurrentTime))
+                .addOnSuccessListener(aVoid -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("commentsCount", FieldValue.increment(1));
+                    documentReference.update(map);
+                    Toast.makeText(getApplicationContext(), "Posted!", Toast.LENGTH_SHORT).show();
+                    docCommentET.setText("");
+                })
+                .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Something's interrupting your post.", Toast.LENGTH_SHORT).show());
+
+
+    }
+
+    private void getComments() {
+
+        CollectionReference commentsRef = FirebaseFirestore.getInstance().collection("Content").document("Documents")
+                .collection((replacer(school)))
+                .document(replacer(title)).collection("Comments");
+        readBuffer.setVisibility(View.VISIBLE);
+        ArrayList<CommentsObject> comments = new ArrayList<>();
+        commentsRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot qds : queryDocumentSnapshots){
+                String comment = qds.getString("comment");
+                comments.add(new CommentsObject(comment));
+            }
+
+            CommentsAdapter commentsAdapter = new CommentsAdapter(DocumentLoader.this, comments);
+            commentsAdapter.notifyDataSetChanged();
+            docCommentRV.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));
+            docCommentRV.setAdapter(commentsAdapter);
+            docCommentRV.bringToFront();
+
+        }).addOnFailureListener(e -> {
+
+        });
+
+
+    }
+
+    private String replacer(String docName) {
+        String docName1 = docName.replace("]", "");
+        String docName2 = docName1.replace("[", "");
+        String docName3 = docName2.replace(".", "");
+        String docName4 = docName3.replace("$", "");
+        String docName5 = docName4.replace("*", "");
+        return docName5.replace("#", "");
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void createWebPrintJob(WebView wv){
+        String jobName = "yN_" + title;
+        PrintAttributes printAttributes = new PrintAttributes.Builder()
+                .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+                .setResolution(new PrintAttributes.Resolution("pdf", "pdf", 600, 600))
+                .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
+                .build();
+
+        PdfPrint pdfPrint = new PdfPrint(printAttributes);
+        pdfPrint.print(wv.createPrintDocumentAdapter(jobName),
+                FilingSystem.Companion.getDubDocuments(), title);
+    }
+}

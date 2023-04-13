@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/signUpRoot"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/tw__composer_deep_gray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Activities.SignUpActivity">
+
+    <RelativeLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login_button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookLogIn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/twitter_login_button"
+            android:layout_centerHorizontal="true" />
+
+<!--        <Button-->
+<!--            android:id="@+id/gMailSignUp"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_below="@+id/facebookLogIn"-->
+<!--            android:text="G-mail sign up"/>-->
+
+        <LinearLayout
+            android:id="@+id/studyLL"
+            android:layout_below="@+id/genderLay"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Line of study"
+                android:gravity="center_horizontal"
+                android:background="#000"
+                android:textColor="#ffff"/>
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
+                android:layout_marginStart="10dp"
+                android:text="@string/institution"/>
+
+            <Spinner
+                android:id="@+id/institutionSpinner"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:background="#D8D7D7"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <EditText
+                android:id="@+id/institutionET"
+                android:hint="@string/institution"
+                android:visibility="gone"
+                android:inputType="textPassword"
+                android:layout_marginTop="6dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
+                android:layout_marginStart="10dp"
+                android:text="@string/school"/>
+
+            <Spinner
+                android:id="@+id/schoolSpinner"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:background="#D8D7D7"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="12dp"
+                android:hint="@string/course_optional_but_recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/courseET"
+                    android:padding="10dp"
+                    android:background="@drawable/edit_text_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/signUp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/studyLL"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_background"
+            android:text="Next" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="250dp"
+            android:layout_marginTop="1dp"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/signUp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/already_have_an_account_log_in"/>
+
+        <LinearLayout
+            android:id="@+id/fullNameSignUpLayout"
+            android:layout_marginTop="9dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:background="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/userTitleSpinner"
+                    android:layout_margin="5dp"
+                    android:background="#D8D7D7"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"/>
+
+            </RelativeLayout>
+
+
+            <EditText
+                android:id="@+id/fullNameSignUp"
+                android:hint="Full name"
+                android:padding="10dp"
+                app:hintTextColor="#fff"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/aliasNameSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fullNameSignUpLayout"
+            android:layout_marginTop="12dp"
+            android:layout_toStartOf="@+id/ynStudio"
+            android:background="@drawable/edit_text_background"
+            android:hint="Alias name (required)"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/ynStudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fullNameSignUpLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="14dp"
+            android:background="#FF9800"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="@string/ynStudios"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/passwordRecovery"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/passwordSignUpLY"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="This address shall be used to recover your account"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailSignUpLY"
+            app:passwordToggleEnabled="true"
+            android:layout_below="@+id/passwordReDoLy"
+            android:layout_marginTop="2dp"
+            android:hint="Password recovery e-mail"
+            app:hintTextColor="#fff"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailSignUp"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneNumberLY"
+            android:layout_width="match_parent"
+            app:passwordToggleEnabled="true"
+            android:layout_below="@+id/emailSignUpLY"
+            android:layout_marginTop="12dp"
+            android:hint="Phone number"
+            app:hintTextColor="#fff"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:id="@+id/genderLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneNumberLY"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/maleCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="@string/male" />
+
+            <CheckBox
+                android:id="@+id/femaleCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/female" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordSignUpLY"
+            android:layout_below="@+id/aliasNameSignUp"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            android:hint="Password"
+            app:hintTextColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordSignUp"
+                android:inputType="textPassword"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordReDoLy"
+            android:layout_below="@+id/passwordSignUpLY"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            android:hint="Confirm password"
+            app:hintTextColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordReDo"
+                android:inputType="textPassword"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:visibility="invisible"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
+
+    </RelativeLayout>
+
+
+
+</ScrollView>

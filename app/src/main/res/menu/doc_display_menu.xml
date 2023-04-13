@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation"
+        android:title="@string/navigate"
+        android:icon="@drawable/nav_right"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/searchDocsMenu"
+        android:title="@string/search"
+        android:icon="@drawable/search_white"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/addDoc"
+        app:showAsAction="never"
+        android:title="@string/publish_doc"/>
+
+    <item
+        android:id="@+id/docSettings"
+        android:icon="@drawable/ic_add_box_black"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
+</menu>

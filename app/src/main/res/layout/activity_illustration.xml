@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Dialogs.Illustration">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="52dp"
+        app:cardCornerRadius="5dp"
+        app:layout_behavior=".Utilities.LockableBottomSheetBehavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/googleg_standard_color_18"
+                    />
+
+                <ImageButton
+                    android:id="@+id/scrollMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_lock_open"
+                    />
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    app:cardBackgroundColor="#000000"
+                    app:cardCornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageButton
+                                android:id="@+id/brushType"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_brush_24" />
+
+                            <ImageButton
+                                android:id="@+id/brushSize"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_text_fields_24" />
+
+                            <ImageButton
+                                android:id="@+id/brushColor"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_palette_24" />
+
+                            <ImageButton
+                                android:id="@+id/eraser"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_erase" />
+
+                            <ImageButton
+                                android:id="@+id/undo"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_undo_24" />
+
+                            <ImageButton
+                                android:id="@+id/redo"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_redo_24" />
+
+                            <ImageButton
+                                android:id="@+id/saveBitmap"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_save_24" />
+
+                            <ImageButton
+                                android:id="@+id/otherOptions"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_more_vert_24" />
+
+                            <ImageButton
+                                android:id="@+id/paintStudio"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_open_in_new" />
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <com.midland.ynote.Utilities.CustomHorizontalScrollView
+                android:id="@+id/paintHorizontalView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.midland.ynote.Utilities.CustomScrollView
+                    android:id="@+id/paintScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <RelativeLayout
+                        android:background="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.midland.ynote.Utilities.Paint.PaintView
+                            android:id="@+id/paintView"
+                            android:layout_width="1200dp"
+                            android:layout_height="1200dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="9dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginRight="9dp"
+                            android:layout_marginBottom="9dp"
+                            android:fadeScrollbars="true"
+                            android:padding="5dp">
+
+                        </com.midland.ynote.Utilities.Paint.PaintView>
+
+
+                    </RelativeLayout>
+
+                </com.midland.ynote.Utilities.CustomScrollView>
+
+            </com.midland.ynote.Utilities.CustomHorizontalScrollView>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

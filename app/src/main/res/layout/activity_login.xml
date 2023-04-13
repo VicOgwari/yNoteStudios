@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loginScrollView"
+    android:layout_width="match_parent"
+    android:background="@color/tw__composer_deep_gray"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.midland.ynote.Activities.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="250dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/passwordSignUpLY1"
+        android:layout_marginBottom="20dp"
+        android:text="Log in"/>
+
+    <TextView
+        android:id="@+id/signUpText"
+        android:layout_width="250dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffff"
+        android:background="#000"
+        android:layout_below="@+id/login"
+        android:layout_marginBottom="10dp"
+        android:text="@string/don_t_have_an_account_create_one"/>
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signUpText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="end"
+            android:text="Forgot password?"
+            android:textColor="#ffff" />
+
+    <LinearLayout
+        android:id="@+id/signUpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp">
+
+        <EditText
+            android:id="@+id/emailSignUp1"
+            android:hint="Alias"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/ynStudio"
+            android:padding="10dp"
+            android:text="@string/ynStudios"
+            android:textSize="18sp"
+            android:background="#FF9800"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordSignUpLY1"
+            android:layout_below="@+id/signUpLayout"
+            android:layout_marginTop="12dp"
+            app:passwordToggleEnabled="true"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordSignUp1"
+                android:inputType="textPassword"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <EditText
+        android:id="@+id/recoveryEmail"
+        android:visibility="gone"
+        android:layout_below="@+id/signUpLayout"
+        android:hint="Password recovery e-mail(gmail)"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="12dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_below="@+id/forgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:id="@+id/twitter_login_button"
+                android:layout_width="250dp"
+                android:layout_marginBottom="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"/>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/facebookLogIn"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/twitter_login_button"
+                android:layout_centerHorizontal="true" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

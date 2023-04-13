@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relProfile"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:src="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="@drawable/ui_color"
+                android:alpha="0.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/nav_header_desc"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    app:srcCompat="@mipmap/ic_launcher_round" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    android:text="@string/nav_header_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/nav_header_subtitle" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/relProfile"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/relLibrary"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:src="@drawable/lib1"
+                        android:scaleType="centerCrop"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:background="@drawable/ui_color1"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <ImageView
+                            android:id="@+id/libraryEmblem"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/nav_header_desc"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            app:srcCompat="@drawable/lib_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:text="@string/library"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relMotionPics"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp">
+
+                    <ImageView
+                        android:src="@drawable/lecturehall"
+                        android:scaleType="fitXY"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:background="#CA0CEA"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <ImageView
+                            android:id="@+id/motionPicsEmblem"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/nav_header_desc"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:src="@drawable/education_class" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="1dp"
+                            android:textColor="#000"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:textStyle="bold"
+                            android:text="LECTURES"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/relSchools"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp">
+
+                    <ImageView
+                        android:src="@drawable/schools_acad_disciplines"
+                        android:alpha="0.2"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:background="@drawable/ui_color1"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <ImageView
+                            android:id="@+id/schoolsEmblem"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/nav_header_desc"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            app:srcCompat="@drawable/school_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:layout_marginStart="10dp"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="SCHOOLS"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_marginLeft="10dp" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relStudio"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:src="@drawable/stud_background22"
+                        android:alpha="0.3"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:background="@drawable/ui_color"
+                        android:alpha="0.3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <ImageView
+                            android:id="@+id/studioEmblem"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:contentDescription="@string/nav_header_desc"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            app:srcCompat="@drawable/studio_icon1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="STUDIO"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

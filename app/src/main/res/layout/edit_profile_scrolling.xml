@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#6E6A6A"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.UserProfile2"
+    tools:showIn="@layout/activity_edit_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:background="@color/tw__composer_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Line of study"
+                android:gravity="center_horizontal"
+                android:background="#F44336"
+                android:textColor="#ffff"/>
+
+            <LinearLayout
+                android:id="@+id/fullNameSignUpLayout"
+                android:layout_marginTop="9dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:background="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/userTitleSpinner"
+                        android:layout_width="75dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#D8D7D7" />
+
+                </RelativeLayout>
+
+
+                <EditText
+                    android:id="@+id/fullNameET"
+                    android:hint="Full name"
+                    android:padding="10dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/edit_text_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/userAlias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fullNameSignUpLayout"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_toStartOf="@+id/ynStudio"
+                android:background="@drawable/edit_text_background"
+                android:hint="Alias name (required)"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/ynStudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fullNameSignUpLayout"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="12dp"
+                android:background="#FF9800"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="@string/ynStudios"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/studyLLEditor"
+            android:orientation="vertical"
+            android:background="@color/tw__composer_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Line of study"
+                android:gravity="center_horizontal"
+                android:background="#000"
+                android:textColor="#ffff"/>
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:background="#000"
+                android:layout_marginStart="10dp"
+                android:text="@string/institution"/>
+
+            <Spinner
+                android:id="@+id/institutionSpinnerEditor"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:background="#000"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <EditText
+                android:id="@+id/institutionETEditor"
+                android:hint="@string/institution"
+                android:visibility="gone"
+                android:inputType="textPassword"
+                android:layout_marginTop="6dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@string/school"/>
+
+            <Spinner
+                android:id="@+id/schoolSpinnerEditor"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="1dp"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@string/course_optional_but_recommended"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:background="@color/tw__composer_black"
+                android:hint="@string/course_optional_but_recommended"
+                android:layout_width="match_parent"
+                app:hintTextColor="#fff"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/courseETEditor"
+                    android:padding="10dp"
+                    android:textColor="#fff"
+                    android:textColorHint="#fff"
+                    android:background="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:background="@color/tw__composer_black"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNumberLY"
+                android:layout_below="@+id/checksLy"
+                android:layout_marginTop="9dp"
+                android:layout_width="match_parent"
+                app:passwordToggleEnabled="true"
+                android:hint="@string/phone_number"
+                app:hintTextColor="#fff"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="number" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/checksLy"
+                android:layout_marginTop="5dp"
+                android:background="@color/tw__composer_black"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Registered as a?"/>
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:background="@color/tw__composer_light_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkboxLecturer"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lecturer"/>
+
+                        <CheckBox
+                            android:id="@+id/checkboxStudent"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="wrap_content"
+                            android:text="@string/student"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/gender"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:background="@color/tw__composer_light_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/checkboxMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Male" />
+
+                        <CheckBox
+                            android:id="@+id/checkboxFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="wrap_content"
+                            android:text="@string/female"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dob"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
+                android:layout_below="@+id/phoneNumberLY"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@string/date_of_birth"/>
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                style="@style/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dob"
+                android:background="@color/tw__composer_deep_gray"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="12dp"
+            android:background="@color/tw__composer_black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/textPhy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:background="#000"
+                android:text="@string/what_is_your_philosophy"
+                android:textColor="#fff"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInPut"
+                android:layout_below="@+id/textPhy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/what_is_your_philosophy">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/aboutETEditor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:background="@color/tw__composer_black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/updateProfile"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF9800"
+                android:text="@string/update_profile"/>
+
+            <View
+                android:alpha="0"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

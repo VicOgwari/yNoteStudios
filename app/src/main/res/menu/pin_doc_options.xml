@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/open"
+        android:title="@string/open"/>
+
+    <item
+        android:id="@+id/publisher"
+        android:title="@string/view_publisher"/>
+
+    <item
+        android:id="@+id/unpin"
+        android:title="@string/unpin"/>
+
+</menu>

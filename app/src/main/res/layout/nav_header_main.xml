@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    tools:context=".MainActivity"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <RelativeLayout
+        android:background="@drawable/ui_color5"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/coachesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:text="- coaches"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <TextView
+                android:id="@+id/studCount"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:layout_toEndOf="@+id/coachesCount"
+                android:text="- students"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/navImage"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/ic_hourglass" />
+
+        <TextView
+            android:id="@+id/userNameNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ynsNav"
+            android:layout_centerInParent="true"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="@string/nav_header_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:id="@+id/ynsNav"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_header_subtitle" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#494949"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="@string/education"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/educationRV"
+                android:background="@color/tw__composer_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#494949"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="@string/popular"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularRV"
+                android:background="@color/tw__composer_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

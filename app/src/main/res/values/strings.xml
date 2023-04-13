@@ -1,0 +1,424 @@
+<resources>
+
+    <string-array name="main_fields">
+        <item> Agriculture &amp; Enterprise Development  </item>
+        <item> Applied Human Sciences </item>
+        <item> Business </item>
+        <item> Economics </item>
+        <item> Education </item>
+        <item> Engineering &amp; Technology </item>
+        <item> Environmental Studies </item>
+        <item> Hospitality &amp; Tourism </item>
+        <item> Humanities &amp; Social Sciences </item>
+        <item> Law </item>
+        <item> Medicine </item>
+        <item> Public Health </item>
+        <item> Pure &amp; Applied Sciences </item>
+        <item> Visual &amp; Performing Art </item>
+        <item> Confucius Institute </item>
+        <item> Peace &amp; Security Studies </item>
+        <item> Creative Arts, Film &amp; Media Studies </item>
+        <item> Architecture </item>
+        <item> Not applicable </item>
+
+    </string-array>
+
+    <string-array name="sign_main_fields">
+        <item> -select a field-  </item>
+        <item> Agriculture &amp; Enterprise Development  </item>
+        <item> Applied Human Sciences </item>
+        <item> Business </item>
+        <item> Economics </item>
+        <item> Education </item>
+        <item> Engineering &amp; Technology </item>
+        <item> Environmental Studies </item>
+        <item> Hospitality &amp; Tourism </item>
+        <item> Humanities &amp; Social Sciences </item>
+        <item> Law </item>
+        <item> Medicine </item>
+        <item> Public Health </item>
+        <item> Pure &amp; Applied Sciences </item>
+        <item> Visual &amp; Performing Art </item>
+        <item> Confucius Institute </item>
+        <item> Peace &amp; Security Studies </item>
+        <item> Creative Arts, Film &amp; Media Studies </item>
+        <item> Architecture </item>
+        <item> Not applicable </item>
+
+    </string-array>
+
+
+    <integer-array name="emblems">
+
+    </integer-array>
+
+    <string-array name="yearFilter">
+
+        <item> All </item>
+        <item> Yr 1 </item>
+        <item> Yr 2 </item>
+        <item> Yr 3 </item>
+        <item> Yr 4 </item>
+        <item> Yr 5 </item>
+        <item> Certificate </item>
+        <item> Diploma </item>
+        <item> Masters </item>
+        <item> phD </item>
+
+    </string-array>
+
+    <string-array name="user_titles">
+
+        <item> Mr. </item>
+        <item> Mrs. </item>
+        <item> Miss. </item>
+        <item> Madam. </item>
+        <item> Tr. </item>
+        <item> Dr. </item>
+        <item> Prof. </item>
+        <item> Eng. </item>
+        <item> H.E. </item>
+        <item> Sister. </item>
+        <item> Bishop. </item>
+        <item> Officer. </item>
+        <item> Speaker. </item>
+        <item> Type title </item>
+
+
+    </string-array>
+
+    <string-array name="institutions">
+        <item> -select a field-  </item>
+        <item> University of Nairobi </item>
+        <item> Kenyatta University </item>
+        <item> Strathmore University </item>
+        <item> Jomo Kenyatta University of Agriculture and Technology </item>
+        <item> United States International University Africa </item>
+        <item> Moi University </item>
+        <item> Egerton University </item>
+        <item> Mount Kenya University </item>
+        <item> The Catholic University of Eastern Africa </item>
+        <item> Africa Nazarene University </item>
+        <item> Technical University of Kenya </item>
+        <item> Maseno University </item>
+        <item> Zetech University </item>
+        <item> KMTC </item>
+        <item> Type my institution </item>
+
+
+    </string-array>
+
+    <string-array name="semesters">
+
+        <item> Semester 1 </item>
+        <item> Semester 2 </item>
+        <item> Semester 3 </item>
+        <item> Not applicable </item>
+
+    </string-array>
+    <string-array name="institutions1">
+
+        <item> All </item>
+        <item> University of Nairobi </item>
+        <item> Kenyatta University </item>
+        <item> Strathmore University </item>
+        <item> Jomo Kenyatta University of Agriculture and Technology </item>
+        <item> United States International University Africa </item>
+        <item> Moi University </item>
+        <item> Egerton University </item>
+        <item> Mount Kenya University </item>
+        <item> The Catholic University of Eastern Africa </item>
+        <item> Africa Nazarene University </item>
+        <item> Technical University of Kenya </item>
+        <item> Maseno University </item>
+        <item> Zetech University </item>
+        <item> KMTC </item>
+        <item> Type my institution </item>
+
+
+    </string-array>
+
+    <string-array name="schools">
+
+        <item>  </item>
+
+    </string-array>
+
+    <string name="app_name">yNote</string>
+    <string name="adMobId"> ca-app-pub-1383978019158618~8643932653 </string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="library">LIBRARY</string>
+    <string name="time">TIME</string>
+    <string name="_8942">⋮</string>
+    <string name="motion_pictures">MOTION PICTURES</string>
+    <string name="settings">Settings</string>
+    <string name="untitled">Untitled</string>
+    <string name="y_note_studios">ynotestudios.com</string>
+
+    <string name="engineering_technology"><![CDATA[Engineering & Technology]]></string>
+    <string name="pure_applied_sciences"><![CDATA[Pure & Applied Sciences]]></string>
+    <string name="humanities_social_sciences"><![CDATA[Humanities & Social Sciences]]></string>
+    <string name="agriculture_enterprise_dev"><![CDATA[Agriculture & Enterprise Dev]]></string>
+    <string name="hospitality_tourism"><![CDATA[Hospitality & Tourism]]></string>
+    <string name="visual_performing_art"><![CDATA[Visual & Performing Art]]></string>
+    <string name="peace_security_studies"><![CDATA[Peace & Security Studies]]></string>
+    <string name="creative_arts_film_media_studies"><![CDATA[Creative Arts, Film & Media Studies]]></string>
+
+    <string name="facebook_app_id">504825441162385</string>
+    <string name="fb_login_protocol_scheme">fb214268554165523</string>
+
+    <string name="email_password"><![CDATA[Email & Password]]></string>
+    <string name="title_activity_motion_pictures">ScrollingActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="already_have_an_account_log_in">Already have an account? Log in</string>
+    <string name="don_t_have_an_account_create_one">Don\'t have an account? Create one.</string>
+    <string name="title_activity_users_profile2" />
+    <string name="title_activity_user_profile2" />
+    <string name="ynStudios">@ynstudios.com</string>
+    <string name="download">Download</string>
+    <string name="open">Open</string>
+    <string name="institution">Institution</string>
+    <string name="school">School</string>
+    <string name="log_out">Log out</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="course_optional_but_recommended">Course (Optional but recommended)</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="what_is_your_purpose">What is your purpose?</string>
+    <string name="about">About</string>
+    <string name="lecturer">Lecturer</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="student">Student</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log in</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="full_name">Full name</string>
+    <string name="user_handle">User_handle</string>
+    <string name="gender">Gender?</string>
+    <string name="_10_word_description">10 word description...</string>
+    <string name="video_title">Video title</string>
+    <string name="more_about_it">More about it...</string>
+    <string name="placement_tags">Placement tags</string>
+    <string name="custom_thumbnail">Custom thumbnail?</string>
+    <string name="verify">Verify</string>
+    <string name="publish_doc">Publish document</string>
+    <string name="search">Search</string>
+    <string name="_1999_kb">1999 kB</string>
+    <string name="_130_pages">130 pages</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="hide">Hide</string>
+    <string name="cancel">Cancel</string>
+    <string name="upload">Upload</string>
+    <string name="delete">Delete</string>
+    <string name="discard_audio">Discard audio</string>
+    <string name="select_audio">Select audio</string>
+    <string name="project_segment">Project segment</string>
+    <string name="sketch_pad">Sketch pad</string>
+    <string name="note_book">Note book</string>
+    <string name="back_camera">Back camera</string>
+    <string name="front_camera">Front camera</string>
+    <string name="studio_settings">Studio settings</string>
+    <string name="show_all_schools">Show from all schools</string>
+    <string name="show_only_enrolled_schools">Show from only enrolled schools</string>
+    <string name="lectures_amp_library_settings"><![CDATA[Lectures & library settings]]></string>
+    <string name="skip">Skip</string>
+    <string name="source_comic">Source comic</string>
+    <string name="store_narrations_privately">Store narrations privately</string>
+    <string name="store_narrations_publicly">Store narrations publicly</string>
+    <string name="save_settings">Save settings</string>
+    <string name="navigate">Navigate</string>
+    <string name="dfff"> </string>
+    <string name="user_gen_tags_best_practices">
+        "Here, you are required to come up with appropriate placement tags (#Tags if you like)
+    that will make it easier for other users to find the document you are publishing. Keep it short &amp; sweet.
+     Remember, they should give an accurate picture of your doc's relevance. Tags mostly come from unit codes &amp; sub topics inside the file. A poultry
+     document published at the school of Agriculture could have the following tags:"</string>
+    <string name="user_gen_tags_cont">"It is highly recommended that you come up with your own tags. But just in case nothing comes up, scrolling to the left will reveal technical tags that may or may not fit your document. "</string>
+    <string name="pictorials">PICTORIALS</string>
+    <string name="documents">Documents</string>
+    <string name="lectures">Lectures</string>
+    <string name="tutorials">Tutorials</string>
+    <string name="pins">Pins</string>
+    <string name="source_pictorial">Source Pictorial</string>
+    <string name="source_documentation">Source documentation</string>
+    <string name="publish">Publish</string>
+    <string name="edit">Edit</string>
+    <string name="forum">Forum</string>
+    <string name="published_lectures">Published lectures</string>
+    <string name="pending_lectures">Pending lectures</string>
+    <string name="completed_lectures">Completed lectures</string>
+    <string name="read_list">Read list</string>
+    <string name="watch_list">Watch list</string>
+    <string name="user_name">User name</string>
+    <string name="go">Go</string>
+    <string name="title_activity_nav_drawer">NavDrawer</string>
+    <string name="education">Education</string>
+    <string name="popular">Popular</string>
+    <string name="shelf">SHELF</string>
+    <string name="what_is_your_philosophy">What is your philosophy?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="any_other_helpful_information">Any other helpful information?</string>
+    <string name="next">Next</string>
+    <string name="view_publisher">View publisher</string>
+    <string name="unpin">Unpin</string>
+    <string name="camera">CAMERA</string>
+    <string name="document">DOCUMENT</string>
+    <string name="use_a_single_doc">Use a single document to create a lecture. Ensure that everything you need to talk about is included in the selected document.</string>
+    <string name="other_than_the_selected_doc">Other than the selected document, the studio will provide a full camera fragment that will allow further illustrations in the real world.</string>
+    <string name="this_studio_combines">This studio combines the selected document, pre-existing pictorials and a camera to allow for clearer and much more dense illustrations</string>
+    <string name="title_activity_replies">Replies</string>
+    <string name="studio_select">Studio select</string>
+    <string name="studio_products">Studio products</string>
+    <string name="recentReads">Recent reads</string>
+    <string name="semester">Semester</string>
+    <string name="done">Done</string>
+    <string name="users">Users</string>
+    <string name="content">Content</string>
+    <string name="rename">Rename</string>
+    <string name="open_api_key" translatable="false"> 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 </string>
+    <string name="twitter_consumer_key" translatable="false"> IBt4BdakJHAf0d15QYUDEF8d5 </string>
+    <string name="twitter_consumer_secret" translatable="false"> z9QEVkiENqfo86Wu0TRHNz2Y9V2EiteP0QgiDEDI01807DORZm </string>
+    <string name="phone_number">Phone number</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="comments">Comments</string>
+    <string name="pictorial_only">Pictorial Only</string>
+    <string name="document_only">Doc Only</string>
+    <string name="camera_only">Camera Only</string>
+    <string name="discard">Discard</string>
+    <string name="update">Update</string>
+    <string name="students">Students</string>
+    <string name="lecturers">Lecturers</string>
+    <string name="donations">Donations</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="No">No</string>
+    <string name="yes">Yes</string>
+    <string name="unit_title">Unit title e.g Critical and creative thinking</string>
+    <string name="past_paper">Past papers</string>
+    <string name="start">Start</string>
+    <string name="no_preview">Preview unavailable for Microsoft Office documents. To open such documents, you must first publish them.</string>
+    <string name="preview_unavailable">Preview unavailable (docx, pptx, xlsx)</string>
+    <string name="ask_your">Ask your lecturers to make use of this studio. Students are advised against misusing the studio. .</string>
+    <string name="do_not_misuse_this_studio">Do not misuse this studio</string>
+    <string name="department">Department</string>
+    <string name="knowledge_base">Knowledge Base</string>
+    <string name="masters">Masters</string>
+    <string name="phd">phD</string>
+    <string name="any_other_detail">Any other detail...</string>
+
+</resources>

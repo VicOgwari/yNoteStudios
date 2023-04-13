@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/streamExoPlayerActivity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:use_controller="true"
+                app:resize_mode="fill"
+                android:layout_margin="5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/valueSetRelActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+<!--                <TextView-->
+<!--                    android:id="@+id/streamVidNameActivity"-->
+<!--                    android:text="Name"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:layout_below="@+id/valueSet"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+                <LinearLayout
+                    android:id="@+id/valueSet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/vidRatingActivity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_round_star_yellow"
+                            />
+
+                        <TextView
+                            android:id="@+id/vidRatingTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/vidRatingActivity"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="5.4" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/vidCommentsActivity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_baseline_comment_24"
+                            />
+
+                        <TextView
+                            android:id="@+id/vidCommentCountDialog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/vidCommentsActivity"
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="51" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ratingRelActivity"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="400dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="9dp"
+                    android:layout_centerInParent="true"
+                    app:cardElevation="7dp">
+
+                    <RelativeLayout
+                        android:background="#eee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RatingBar
+                            android:id="@+id/ratingBarActivity"
+                            android:progressBackgroundTint="#FFC400"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:numStars="5"
+                            android:stepSize="0.1"
+                            tools:targetApi="lollipop" />
+
+
+                        <Button
+                            android:layout_below="@+id/ratingBarActivity"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Submit"
+                            android:id="@+id/submitRateActivity"/>
+
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

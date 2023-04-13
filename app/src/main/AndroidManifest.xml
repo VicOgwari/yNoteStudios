@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.midland.ynote"
+    android:installLocation="preferExternal" >
+
+    <uses-sdk tools:overrideLibrary="com.abedelazizshe.lightcompressorlibrary" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- <uses-feature android:name="android.hardware.location.gps" /> -->
+    <!-- <uses-feature android:name="android.hardware.camera.any" /> -->
+    <!-- <uses-feature android:name="android.hardware.camera" /> -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:allowBackup="true"
+        android:enabled="true"
+        android:exported="true"
+        android:hardwareAccelerated="true"
+        android:hasFragileUserData="true"
+        android:icon="@mipmap/ic_y_note"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_y_note_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon, android:theme"
+        tools:targetApi="q" >
+        <activity
+            android:name=".ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_y_note_round" />
+
+        <activity
+            android:name=".Activities.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Tests.CamTest"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1383978019158618~8643932653" />
+
+        <activity
+            android:name=".Activities.CloudPhotoDocs"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="CloudPhotoDocs" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.StreamingActivityKT"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.GeneralSearch"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CommentsReplies"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="Replies" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.SwipeUpActivity"
+            android:exported="false"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.Production"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Replies"
+            android:exported="false"
+            android:label="@string/title_activity_replies"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utilities.TwoCameras"
+            android:exported="false"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.Next"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.DocumentLoader"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@style/AppFullScreen" >
+            <intent-filter>
+                <action android:name="DocumentLoader" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Utilities.NavHeaderMain" />
+        <activity
+            android:name=".Activities.SearchResults"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".Activities.EditProfile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LecturesList"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".Services.BackgroundService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="mediaProjection"
+            android:stopWithTask="true" />
+        <service
+            android:name=".Services.FirebaseMessaging"
+            android:directBootAware="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".Activities.LectureFilter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utilities.Projector"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.VideoUploader"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.DocumentMetaData"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.StreamActivity"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.SourceBitmapList"
+            android:noHistory="false"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.ProfileItemsList"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.UserProfile2"
+            android:label="@string/title_activity_user_profile2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utilities.DragDropActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Activities.ExoPlayerActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Activities.ExoPlayer"
+            android:noHistory="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.SearchUsers"
+            android:noHistory="false" />
+        <activity
+            android:name=".Activities.StudioLecturesList"
+            android:noHistory="true" />
+        <activity android:name=".Activities.CustomGallery" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.midland.ynote.Activities.PhotoDoc"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".Activities.PhotoDoc"
+            android:configChanges="orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.MotionPictures"
+            android:label="@string/title_activity_motion_pictures" />
+        <activity android:name=".Activities.UserProfile" />
+        <activity
+            android:name=".Activities.SignUpActivity"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.Schools"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".Activities.SchoolDepartmentDocuments"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.SourceDocList"
+            android:label="Source Doc"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LectureStudio"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.VideoPlayer"
+            android:noHistory="true"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name=".Activities.Library"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.PdfViewerReadMode"
+            android:exported="true"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.NoActionBar" >
+
+            <!--
+     Capture content by MIME type, which is how Gmail broadcasts
+     attachment open requests.  pathPattern and file extensions
+     are ignored, so the MIME type *MUST* be explicit, otherwise
+     we will match absolutely every file opened.
+            -->
+            <intent-filter
+                android:icon="@drawable/ic_round_star_yellow"
+                android:label="@string/app_name"
+                android:priority="50" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="application/vnd.my-type" />
+            </intent-filter>
+
+            <!--
+                 Capture file open requests (pathPattern is honoured) where no
+                 MIME type is provided in the Intent.  An Intent with a null
+                 MIME type will never be matched by a filter with a set MIME
+                 type, so we need a second intent-filter if we wish to also
+                 match files with this extension and a non-null MIME type
+                 (even if it is non-null but zero length).
+            -->
+            <intent-filter
+                android:icon="@drawable/ic_check_green"
+                android:label="@string/app_name"
+                android:priority="50" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:host="*" />
+
+                <!--
+                     Work around Android's ugly primitive PatternMatcher
+                     implementation that can't cope with finding a . early in
+                     the path unless it's explicitly matched.
+                -->
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.pdf" />
+            </intent-filter>
+
+            <!--
+                 Capture file open requests (pathPattern is honoured) where a
+                 (possibly blank) MIME type is provided in the Intent.  This
+                 filter may only be necessary for supporting ES File Explorer,
+                 which has the probably buggy behaviour of using an Intent
+                 with a MIME type that is set but zero-length.  It's
+                 impossible to match such a type except by using a global
+                 wildcard.
+            -->
+            <intent-filter
+                android:icon="@drawable/ic_more_horiz"
+                android:label="@string/app_name"
+                android:priority="50" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="*/*" />
+
+                <!--
+                     Work around Android's ugly primitive PatternMatcher
+                     implementation that can't cope with finding a . early in
+                     the path unless it's explicitly matched.
+                -->
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.pdf" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.LectureStudio2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.StreamingActivity"
+            android:exported="true"
+            android:theme="@style/AppFullScreen" >
+            <intent-filter>
+                <action android:name="StreamingActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Tests.DualCamActivity" />
+
+        <receiver android:name=".Utilities.NotificationReceiver" />
+    </application>
+
+</manifest>

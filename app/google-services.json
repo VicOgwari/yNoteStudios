@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "409169492242",
+    "firebase_url": "https://kotlinupload-9794c.firebaseio.com",
+    "project_id": "kotlinupload-9794c",
+    "storage_bucket": "kotlinupload-9794c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409169492242:android:257d96479e3fc6ca725bcb",
+        "android_client_info": {
+          "package_name": "com.midland.ynote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409169492242-i5lr6ii1t14q147tjd8s01akesbo077c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi9SjAjAwX0W4MHbU3U1C1xzOWjy5t39w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409169492242-i5lr6ii1t14q147tjd8s01akesbo077c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

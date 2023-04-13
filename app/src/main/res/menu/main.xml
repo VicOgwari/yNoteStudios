@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/notification"
+        android:title="@string/navigate"
+        app:showAsAction="always"
+        android:icon="@drawable/search_white"/>
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/navigate"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_launcher"/>
+
+    <item
+        android:id="@+id/action_disclaimer"
+        android:orderInCategory="100"
+        android:title="@string/disclaimer"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_suggestions"
+        android:orderInCategory="100"
+        android:title="@string/suggestions"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_donations"
+        android:orderInCategory="100"
+        android:title="@string/donations"
+        app:showAsAction="never" />
+
+
+</menu>

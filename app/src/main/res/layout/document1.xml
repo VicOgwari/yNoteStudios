@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="225dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lectureCard"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        app:cardElevation="9dp">
+
+        <ImageView
+            android:id="@+id/objectCoverPhoto"
+            android:alpha="0.4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <RelativeLayout
+            android:id="@+id/relFeed"
+            android:background="@drawable/document_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/cardview_default_elevation">
+
+            <TextView
+                android:id="@+id/school"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_alignParentBottom="true"
+                android:text="School"
+                android:textColor="#000"
+                android:gravity="center_horizontal"
+                android:background="#FBFBFB"/>
+
+
+            <ImageView
+                android:id="@+id/docImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/pdf" />
+
+
+            <TextView
+                android:id="@+id/docTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="55dp"
+                android:ellipsize="end"
+                android:ems="7"
+                android:gravity="center_horizontal"
+                android:maxEms="7"
+                android:maxLines="3"
+                android:text="Numerical new stuff that I'm just adding Analysis of the marginal deficit of ammerican puplexities. I w"
+                android:textColor="#000"
+                android:textSize="13sp"
+                android:textStyle="italic|bold"
+                tools:targetApi="o" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/publisherLY"
+                android:layout_gravity="end"
+                app:cardBackgroundColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/countCarrierLY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:src="@drawable/ic_white_pin"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"/>
+
+                        <TextView
+                            android:id="@+id/downloadCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.1K"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:textColor="#ffff"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:src="@drawable/ic_baseline_comment_white"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"/>
+
+                        <TextView
+                            android:id="@+id/commentsCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.1K"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:textColor="#ffff"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/publisherLY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/docTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#fff" />
+
+                <TextView
+                    android:id="@+id/publishedBy"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:maxEms="9"
+                    android:maxLines="4"
+                    android:text="Published by:"
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:textStyle="italic|bold"
+                    tools:targetApi="o" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#000">
+
+                    <TextView
+                        android:id="@+id/publishedByApproval"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:ellipsize="end"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:maxEms="4"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:text="User handle"
+                        android:textColor="#76FF03"
+                        android:textSize="13sp"
+                        android:textStyle="italic|bold"
+                        tools:targetApi="o" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/doc_options"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:paddingStart="@dimen/cardview_default_radius"
+                android:paddingLeft="@dimen/cardview_compat_inset_shadow"
+                android:shadowColor="#000"
+                android:text="@string/_8942"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="#000"
+                android:textSize="30sp"
+                tools:ignore="RtlSymmetry" />
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

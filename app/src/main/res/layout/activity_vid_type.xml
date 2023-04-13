@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="9dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Dialogs.VidType">
+
+    <Button
+        android:id="@+id/studioLecturesBtn"
+        android:background="@drawable/button_background"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Studio lectures"/>
+
+    <Button
+        android:id="@+id/outSourcedBtn"
+        android:layout_marginTop="20dp"
+        android:textColor="#000"
+        android:background="@drawable/button_background"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Outsourced Video"/>
+
+</LinearLayout>

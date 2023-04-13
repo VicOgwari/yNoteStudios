@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Blinders"
+        android:id="@+id/blinders"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Disclaimer"
+        android:id="@+id/studyMode"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="illustrate"
+        android:id="@+id/illustrate"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_gesture_24"
+        />
+
+    <item
+        android:title="notes"
+        android:id="@+id/notes"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_create_24"
+        />
+
+</menu>

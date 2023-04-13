@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Dialogs.DocUploaderPopUp">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/scrollModeDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff"
+                android:src="@drawable/ic_lock_open" />
+
+            <TextView
+                android:id="@+id/docTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Document Details"
+                android:maxLines="2"
+                android:maxEms="7"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:textSize="18sp"
+                android:textStyle="bold|normal"
+                android:textColor="#000"
+                android:padding="8dp"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="7dp"
+            android:background="#000"/>
+
+        <com.midland.ynote.Utilities.CustomScrollView
+            android:id="@+id/docMetaDateSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    app:cardElevation="4dp"
+                    android:id="@+id/docImageCard"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="9dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                        <com.github.barteksc.pdfviewer.PDFView
+                            android:id="@+id/picBitmap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <ProgressBar
+                            android:id="@+id/uploadProgress1"
+                            android:layout_width="114dp"
+                            android:layout_height="114dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="92dp"
+                            android:minWidth="290dp"
+                            android:minHeight="290dp"
+                            android:visibility="gone" />
+
+
+                    </RelativeLayout>
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageButton
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_pdf_red" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:text="School"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold|normal"/>
+
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="9dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/mainFieldSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="#000"
+                        android:ellipsize="end"
+                        android:textColor="#ffff"
+                        android:maxLines="1"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_marginTop="8dp" />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sub-Field"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold|normal"
+                    android:textColor="#000"
+                    android:padding="4dp"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content">
+
+
+                    <Spinner
+                        android:id="@+id/subFieldSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#F50057"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:textSize="19sp"
+                        android:layout_marginTop="8dp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Knowledge Base"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:textColor="#000"
+                        android:padding="4dp"/>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/yr1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="Yr 1"/>
+
+                        <CheckBox
+                            android:id="@+id/yr2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="Yr 2"/>
+
+                        <CheckBox
+                            android:id="@+id/yr3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="Yr 3"/>
+
+                        <CheckBox
+                            android:id="@+id/yr4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yr 4"/>
+
+                        <CheckBox
+                            android:id="@+id/yr5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="Yr 5"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="19dp"
+                    android:padding="9dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:id="@+id/coverPhotoBtn"
+                        android:text="Cover photo"
+                        android:textColor="#ffff"
+                        android:textSize="14sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="#000000"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/optionalCoverPhoto"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(Optional)"
+                        android:layout_toRightOf="@+id/coverPhotoBtn"
+                        android:layout_centerHorizontal="true"/>
+
+                    <ImageView
+                        android:id="@+id/coverPhoto"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="240dp"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/relevance"
+                    android:text="Relevance"
+                    android:layout_marginTop="10dp"
+                    android:background="#000000"
+                    android:textColor="#ffff"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    app:cardCornerRadius="9dp"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/relevanceRV"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        android:spinnerMode="dropdown"
+                        android:focusable="true" />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+                <View
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#000"/>
+
+                <View
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#000"/>
+
+
+
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Unit Code(Optional)"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold|normal"
+                    android:textColor="#000"
+                    android:padding="4dp"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/unitCodeEditText"
+                        android:hint="UCU 100"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/docDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Any other detail..."
+                        android:inputType="textMultiLine"
+                        android:ellipsize="end"
+                        android:ems="36"
+                        android:maxLines="6"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+                <Button
+                    android:id="@+id/publishDoc"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#C6FF00"
+                    android:text="Publish"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+
+        </com.midland.ynote.Utilities.CustomScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

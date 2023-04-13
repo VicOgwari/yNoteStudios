@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/completedLecturesVideoView"
+                android:layout_centerHorizontal="true"
+                android:background="#000"
+                android:layout_width="370dp"
+                android:layout_height="290dp"/>
+
+            <ImageButton
+                android:id="@+id/uploadBoolean"
+                android:src="@drawable/ic_cloud_upload_black"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="220dp"
+                android:layout_marginLeft="320dp"
+                android:layout_marginStart="320dp" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/editButton"
+                android:text="Edit"
+                android:textStyle="normal|bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/publishButton"
+                android:text="Publish"
+                android:textStyle="normal|bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

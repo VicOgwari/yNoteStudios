@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:background="#4A4A4A"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar1"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#7635EA"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/addTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/source_pictorial"
+                    android:textColor="#fffdfd"
+                    android:background="#000"
+                    android:textStyle="bold|italic"
+                    android:padding="3dp"
+                    android:textColorHint="#ffff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/skipButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#FFBF00"
+                    android:text="Skip"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bitmapsListRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DFDDDD"
+        android:layout_below="@+id/app_bar1" />
+
+
+</RelativeLayout>

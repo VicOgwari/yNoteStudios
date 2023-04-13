@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Activities.UserProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/profileBackground"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userDisplayPic"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:id="@+id/followersCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic|normal"
+                android:text="220 followers"
+                android:textSize="20sp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="17dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/contactCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|italic"
+                android:text="220 contacts"
+                android:textSize="20sp"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Creative quotient: 5.4"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:src="@drawable/ic_round_star_yellow"
+                android:background="@android:color/transparent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageButton
+                android:src="@drawable/ic_round_star_yellow"
+                android:background="@android:color/transparent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageButton
+                android:src="@drawable/ic_round_star_yellow"
+                android:background="@android:color/transparent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageButton
+                android:src="@drawable/ic_round_star_yellow"
+                android:background="@android:color/transparent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <ImageButton
+                android:src="@drawable/ic_round_star_yellow"
+                android:background="@android:color/transparent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="4dp">
+
+                <Button
+                    android:id="@+id/shelfBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:padding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/shelfCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/shelfImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/shelfCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/shelfCard"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic|bold"
+                            android:textColor="#000"
+                            android:text="Shelf"
+                            android:textSize="25sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="4dp">
+
+                <Button
+                    android:id="@+id/publishedDocsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:padding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/publishedDocsCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/publishedDocsImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/publishedDocsCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/publishedDocsCard"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic|bold"
+                            android:textColor="#000"
+                            android:text="Published documents"
+                            android:textSize="25sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="9dp">
+
+                <Button
+                    android:id="@+id/pendingLecturesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:padding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/pendingImageCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/pendingLecturesImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/pendingImageCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/pendingImageCard"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic|bold"
+                            android:textColor="#000"
+                            android:text="Pending lectures"
+                            android:textSize="25sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="4dp">
+
+                <Button
+                    android:id="@+id/compeltedLecturesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:padding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/completedLecturesCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/completedLecturesImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/completedLecturesCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/completedLecturesCard"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic|bold"
+                            android:textColor="#000"
+                            android:text="Completed lectures"
+                            android:textSize="25sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="4dp">
+
+                <Button
+                    android:id="@+id/publishedLecturesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:padding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/publishedLecturesCard"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/publishedLecturesImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/publishedLecturesCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/publishedLecturesCard"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic|bold"
+                            android:textColor="#000"
+                            android:text="Published lectures"
+                            android:textSize="25sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

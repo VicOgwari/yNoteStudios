@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLY"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#222222"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.midland.ynote.Fragments.Documents">
+
+    <RelativeLayout
+        android:id="@+id/allDocsRel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pageCounter"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/docRecycler"
+            android:layout_above="@+id/searchDocs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <SearchView
+            android:id="@+id/searchDocs"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#ffff"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search local documents" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/docHistoryRel"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/findDocs"
+            android:text="Browse for documents"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/docHistoryRV"
+            android:layout_below="@+id/findDocs"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
+

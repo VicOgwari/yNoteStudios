@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ynote.com.midland.ynote.Activities.MotionPictures">
+    <item
+        android:id="@+id/disclaimer"
+        android:orderInCategory="100"
+        android:title="@string/disclaimer"
+        app:showAsAction="never" />
+</menu>

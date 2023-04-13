@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordStrm"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Activities.ExoPlayerActivity"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/streamExoPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000"
+            app:controller_layout_id="@layout/exo_playback_control_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:player_layout_id="@layout/exo_simple_player_view"
+            app:repeat_toggle_modes="none"
+            app:show_timeout="45000"
+            app:surface_type="texture_view"
+            />
+
+        <ProgressBar
+            android:id="@+id/loadProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageViewExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/tw__composer_black"
+                android:padding="5dp"
+                android:src="@drawable/ic_remove_circle" />
+
+
+            <ImageView
+                android:id="@+id/watchLater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/imageViewExit"
+                android:background="@color/tw__composer_black"
+                android:padding="5dp"
+                android:src="@drawable/ic__watch_later" />
+
+
+            <TextView
+                android:id="@+id/pinCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/watchLater"
+                android:layout_marginStart="3dp"
+                android:text="2500"
+                android:layout_centerVertical="true"/>
+
+
+            <ImageView
+                android:id="@+id/moreLikeIt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:background="@color/tw__composer_black"
+                android:padding="5dp"
+                android:src="@drawable/ic_open_in_new" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+                app:cardBackgroundColor="@color/tw__solid_white"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:background="@color/tw__composer_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/vidRatings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_round_star_yellow" />
+
+                        <TextView
+                            android:id="@+id/vidRatingTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/vidRatings"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="#000"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textColor="#ffff"
+                            android:textStyle="italic|bold" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/commentsRel"
+                        android:background="@color/tw__composer_black"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/vidComments"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_baseline_comment_white" />
+
+                        <TextView
+                            android:id="@+id/vidCommentCountExo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/vidComments"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="#000"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#fff"
+                            android:textStyle="italic|bold" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/comments_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="640dp"
+        android:layout_margin="10dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="9dp"
+        app:layout_behavior="com.midland.ynote.Utilities.LockableBottomSheetBehavior">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.ortiz.touchview.TouchImageView
+                android:id="@+id/touchIV"
+                android:visibility="gone"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:id="@+id/docTitleRel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00574F">
+
+
+                <TextView
+                    android:id="@id/docTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:text="Document Title"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/subscribe"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#fff"
+                    android:src="@drawable/ic_bookmark_border" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lin"
+                android:layout_below="@+id/docTitleRel"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginBottom="5dp"
+                android:padding="3dp"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/docCommentET"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2.5"
+                    android:layout_marginStart="2dp"
+                    android:background="#A5A5A5"
+                    android:hint="Say something..."
+                    android:inputType="textImeMultiLine"
+                    android:textColor="#fff" />
+
+                <Button
+                    android:id="@+id/addCommentBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.6"
+                    android:background="#000000"
+                    android:text="Add"
+                    android:textColor="#ffff"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/optionsLin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin"
+                android:layout_marginBottom="1dp"
+                android:background="#009688"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:backgroundTint="#000"
+                    android:src="@drawable/ic_create_white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addDocument"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:backgroundTint="#000"
+                    android:src="@drawable/ic_pages" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:backgroundTint="#000"
+                    android:src="@drawable/ic_camera_white" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/commentCarrier"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/optionsLin"
+                android:background="#000"
+                android:padding="7dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/docCommentsRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#606060" />
+
+                    <TextView
+                        android:id="@+id/justASec"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="#fff"
+                        android:gravity="center_horizontal"
+                        android:text="Just a sec..."
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/imageRel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="#000"
+                    android:visibility="gone">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/imageComment"
+                        android:layout_width="250dp"
+                        android:layout_height="300dp"
+                        android:background="#AFAFAF" />
+
+                    <ImageButton
+                        android:id="@+id/discardImage"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/com_facebook_close" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/docRel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/docEmblem"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/discardDoc"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/pdf" />
+
+                    <ImageButton
+                        android:id="@+id/discardDoc"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/com_facebook_close" />
+
+                    <TextView
+                        android:id="@+id/docTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/docEmblem"
+                        android:background="#C8C8C8"
+                        android:gravity="center_vertical"
+                        android:text="Document title"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ideas_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_margin="10dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="9dp"
+        app:layout_behavior="com.midland.ynote.Utilities.LockableBottomSheetBehavior">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#303030"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/addToSlide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addBtn"
+                android:background="#fff"
+                android:gravity="center_horizontal"
+                android:text="More ideas..."
+                android:textColor="#000" />
+
+            <ImageButton
+                android:id="@+id/addBtn"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:background="#8BFA0A"
+                android:src="@drawable/ic_check"/>
+
+            <ImageButton
+                android:id="@+id/outSource"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="#333333"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_open_in_new"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photosRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/outSource"
+                android:layout_centerHorizontal="true"
+                android:background="#252525" />
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/ratingRel"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="@+id/streamExoPlayer">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="7dp">
+
+            <RelativeLayout
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/tw__blue_default">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:background="@color/tw__solid_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    tools:targetApi="lollipop" />
+
+
+                <ImageButton
+                    android:id="@+id/submitRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ratingBar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/tw__composer_deep_gray"
+                    android:src="@drawable/ic_check"
+                    android:layout_marginBottom="5dp" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

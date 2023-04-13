@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.midland.ynote.Fragments.UserGenSubCat">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bestPrac"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Best practices"
+            android:background="#FAD621"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userGenTagsRV"
+            android:layout_below="@+id/bestPrac"
+            android:background="#807E7E"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"/>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:background="#000"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/userGenTagET"
+                android:layout_width="0dp"
+                android:layout_weight="2.4"
+                android:background="#fff"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/addTag"
+                android:text="Add"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="#E91E63"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bestPracLay"
+            android:visibility="gone"
+            android:layout_below="@+id/bestPrac"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:background="#050505"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:text="@string/user_gen_tags_best_practices"/>
+
+            <HorizontalScrollView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="22dp"
+                        android:textSize="22sp"
+                        android:text="Chicken feeds"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="22dp"
+                        android:textSize="22sp"
+                        android:text="Poultry diseases"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="22dp"
+                        android:textSize="22sp"
+                        android:text="New castle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="22dp"
+                        android:textSize="22sp"
+                        android:text="Hatchery"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="22dp"
+                        android:textSize="22sp"
+                        android:text="Chicken brooder"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#050505"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:text="@string/user_gen_tags_cont"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

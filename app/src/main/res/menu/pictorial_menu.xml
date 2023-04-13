@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/delete"
+        android:id="@+id/pictorialDelete"/>
+
+    <item android:title="@string/discard_audio"
+        android:id="@+id/discardAudio"/>
+
+    <item
+        android:id="@+id/selectAudio"
+        android:title="@string/select_audio" />
+
+
+    <item android:title="@string/project_segment"
+        android:id="@+id/projectSegment"/>
+
+</menu>

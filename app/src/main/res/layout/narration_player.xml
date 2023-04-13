@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/tw__composer_black"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="50dp"
+    app:layout_behavior="com.midland.ynote.Utilities.LockableBottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/tw__composer_deep_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:src="@drawable/ic_audiotrack" />
+
+        <TextView
+            android:id="@+id/narrationHeaderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="ynsounds"
+            android:textColor="#ffff"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/narrationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="end"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="16dp"
+            android:text="Not playing"
+            android:textAlignment="textEnd"
+            android:textColor="#ffff"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="File name"
+        android:textAlignment="center"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:textSize="16sp"
+        android:textColor="#ffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:gravity="center_horizontal" />
+
+
+    <SeekBar
+        android:id="@+id/narSeekBar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

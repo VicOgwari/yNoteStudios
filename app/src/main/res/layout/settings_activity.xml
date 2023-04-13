@@ -1,0 +1,202 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/settings"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:background="#333333"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"
+            android:background="#F6E761"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:text="@string/studio_settings"/>
+
+        <LinearLayout
+            android:background="#B6B6B6"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/sketchPad"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sketch_pad"/>
+
+                <CheckBox
+                    android:id="@+id/noteBook"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/note_book"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/frontFacing"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/front_camera"/>
+
+                <CheckBox
+                    android:id="@+id/backFacing"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_camera"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="#333333"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"
+            android:background="#F6E761"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:text="@string/lectures_amp_library_settings"/>
+
+        <LinearLayout
+            android:background="#B6B6B6"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/showAll"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_all_schools"/>
+
+                <CheckBox
+                    android:id="@+id/showEnrolled"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_only_enrolled_schools"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="#333333"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"
+            android:background="#F6E761"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:text="Comics settings"/>
+
+        <LinearLayout
+            android:background="#B6B6B6"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/privateNar"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/store_narrations_privately"/>
+
+                <CheckBox
+                    android:id="@+id/publicNar"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/store_narrations_publicly"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveSettings"
+        android:layout_marginTop="12dp"
+        android:background="#5E5E5E"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_settings"/>
+
+</LinearLayout>

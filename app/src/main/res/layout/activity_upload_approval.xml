@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/subRel"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="240dp"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lectureCard"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:id="@+id/colorRel"
+                android:background="#000"
+                android:alpha="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/videoThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relFeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp">
+
+                <ProgressBar
+                    android:id="@+id/uploadProgress"
+                    android:visibility="gone"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    style="?android:progressBarStyleHorizontal"
+                    android:progressDrawable="@drawable/progress_circle"
+                    android:layout_above="@+id/uploadProgressText"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/uploadProgressText"
+                    android:layout_width="100dp"
+                    android:textColor="#000"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/titleLay"
+                    android:layout_marginBottom="4dp"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/userHandleLay"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="-9dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/statsLayout"
+                    android:layout_centerHorizontal="true">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:background="#000">
+
+
+                        <TextView
+                            android:id="@+id/userHandleUpload"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="User handle"
+                            android:textColor="#76FF03"
+                            android:textSize="14sp"
+                            android:textStyle="italic|bold" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/titleLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/userHandleLay"
+                    android:layout_marginBottom="5dp">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/vidTitleCard1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:alpha="0.9"
+                        app:cardBackgroundColor="#F3F3F3">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#FFFFFF">
+
+                            <com.borjabravo.readmoretextview.ReadMoreTextView
+                                android:id="@+id/videoTitle"
+                                android:layout_width="160dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_margin="3dp"
+                                android:background="#000000"
+                                android:ellipsize="end"
+                                android:gravity="center_horizontal"
+                                android:maxLines="6"
+                                android:text="Video title: Could be anything really. Nobody is in controls coz if the world continues like this, stuff gon get too real"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
+                                android:textStyle="normal|bold"
+                                tools:targetApi="o" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/statsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:id="@+id/firstLayout"
+                        android:background="#000"
+                        android:layout_width="match_parent"
+                        android:layout_margin="4dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/vidCommentsLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <ImageButton
+                                android:id="@+id/comments"
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="4dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_baseline_comment_white" />
+
+                            <TextView
+                                android:id="@+id/videoCommentCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="#05DEFA"
+                                android:textSize="10sp"
+                                android:textStyle="italic|normal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:layout_width="35dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_eye_24" />
+
+                            <TextView
+                                android:id="@+id/videoViewCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#05DEFA"
+                                android:text="0"
+                                android:textSize="10sp"
+                                android:textStyle="italic|normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ratingLayout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <ImageButton
+                                android:id="@+id/ratings"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="4dp"
+                                android:alpha="0.8"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_round_star_yellow" />
+
+                            <TextView
+                                android:id="@+id/videoRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#05DEFA"
+                                android:text="0.0"
+                                android:textSize="10sp"
+                                android:textStyle="italic|normal" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/videoOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_more_horiz" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_below="@+id/subRel"
+        android:text="@string/upload"
+        android:background="#ABF456"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/hideLayout"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/upload"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/hide"
+            android:text="@string/hide"
+            android:background="#FFEB3B"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/cancel"
+            android:text="@string/cancel"
+            android:background="#E91E63"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

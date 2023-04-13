@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:adjustViewBounds="true">
+
+
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp">
+
+        <ImageView
+            android:id="@+id/imageSlide"
+            android:layout_width="390dp"
+            android:layout_height="430dp"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_centerHorizontal="true"
+            android:layout_width="350dp"
+            android:layout_alignParentBottom="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="7dp"
+            app:cardBackgroundColor="#000"
+            android:alpha="0.8"
+            android:layout_height="wrap_content">
+
+            <com.borjabravo.readmoretextview.ReadMoreTextView
+                android:id="@+id/pictorialDescription"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="description"
+                android:textColor="#fff"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:maxEms="14"
+                android:textStyle="normal"
+                android:textSize="22sp"/>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+
+<!--    <include layout="@layout/slider_item" />-->
+
+</RelativeLayout>

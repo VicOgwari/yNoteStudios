@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/profileRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:fitsSystemWindows="true"
+    tools:context=".Activities.UserProfile2">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <RelativeLayout
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/spaceHolder"
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profilePictureCard"
+                    android:layout_below="@+id/spaceHolder"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="visible"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="#FFEA00"
+                    android:layout_marginStart="9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp">
+
+                    <RelativeLayout
+                        android:layout_gravity="center"
+                        android:padding="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <ImageView
+                            android:id="@+id/userProfilePicture"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:adjustViewBounds="true"
+                            android:layout_centerInParent="true"
+                            android:background="#FFFFFF" />
+
+
+                        <ProgressBar
+                            android:id="@+id/loadImage"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/userCoverArt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/userAlias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profilePictureCard"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    android:text="User_handle"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:id="@+id/cqRel"
+                    android:layout_below="@+id/userAlias"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:layout_anchorGravity="bottom|end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:background="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_waves" />
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_waves"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"/>
+
+                            <LinearLayout
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/creativeQuotient"
+                                    android:layout_width="300dp"
+                                    android:layout_height="wrap_content"
+                                    android:background="#303030"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:text="Just a sec..."
+                                    android:textColor="#fff"
+                                    android:textSize="20sp" />
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/followersCountCard"
+                    android:layout_below="@+id/cqRel"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp"
+                    app:cardElevation="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true">
+
+                    <TextView
+                        android:id="@+id/coaches"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal|italic"
+                        android:background="#000"
+                        android:text=" - coaches"
+                        android:textColor="#ffff"
+                        android:textSize="20sp"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="17dp"
+                    android:layout_below="@+id/cqRel"
+                    app:cardElevation="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:id="@+id/students"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic|normal"
+                        android:background="#000"
+                        android:text=" - students"
+                        android:textColor="#ffff"
+                        android:textSize="20sp"/>
+
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.AppBarOverlay">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#ffff"
+                        android:textStyle="bold"
+                        android:textSize="19sp"/>
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <include layout="@layout/content_scrolling" />
+
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

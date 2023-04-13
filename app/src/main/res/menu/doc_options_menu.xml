@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Open"
+        android:id="@+id/openDoc"/>
+
+    <item android:title="Download"
+        android:id="@+id/downloadDoc"/>
+
+    <item android:title="Reposted doc"
+        android:id="@+id/misplaced"/>
+
+    <item android:title="Follow publisher"
+        android:id="@+id/followPublisher"/>
+
+</menu>

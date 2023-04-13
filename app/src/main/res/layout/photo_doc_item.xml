@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp">
+
+
+    <RelativeLayout
+        android:id="@+id/carrierRel"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#474747"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/editPreviewDescription"
+                    android:layout_width="238dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="7dp"
+                    android:scrollbars="vertical"
+                    android:layout_toStartOf="@+id/previewCard"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:visibility="gone" />
+
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:id="@+id/prevDescription"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_toStartOf="@+id/previewCard"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:padding="10dp"
+                    android:text="Add a description"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textColor="#fff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <Chronometer
+                    android:id="@+id/narrationChronometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prevDescription"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginBottom="9dp"
+                    android:layout_toStartOf="@+id/previewCard"
+                    android:layout_toLeftOf="@+id/previewCard"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_alignBottom="@+id/previewCard"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_toStartOf="@+id/previewCard"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageButton
+                        android:id="@+id/narration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#BCBCBC"
+                        android:src="@drawable/ic_mic_off"
+                        android:visibility="visible" />
+
+
+                    <ImageButton
+                        android:id="@+id/playNarration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:background="#BCBCBC"
+                        android:src="@drawable/ic_play_circle" />
+
+
+                </LinearLayout>
+
+
+
+                <ImageButton
+                    android:id="@+id/submitEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pages"
+                    android:layout_alignBottom="@+id/previewCard"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="#BCBCBC"
+                    android:visibility="visible" />
+
+
+
+                <Button
+                    android:id="@+id/photoDocsOptions"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:paddingStart="@dimen/cardview_default_radius"
+                    android:paddingLeft="@dimen/cardview_compat_inset_shadow"
+                    android:shadowColor="#000"
+                    android:text="@string/_8942"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="#000"
+                    android:textSize="30sp" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/previewCard"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true"
+                    app:cardBackgroundColor="#000000"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="7dp">
+
+                    <ImageView
+                        android:id="@+id/preview"
+                        android:layout_width="145dp"
+                        android:layout_height="145dp"
+                        android:layout_gravity="center"
+                        android:layout_centerInParent="true"
+                        android:background="#FFFFFF" />
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/templateCard"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/carrierRel"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            tools:showIn="@layout/activity_main" >
+
+            <com.midland.ynote.TemplateView
+                android:id="@+id/nativeTemplate"
+                app:gnt_template_type="@layout/gnt_small_template_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

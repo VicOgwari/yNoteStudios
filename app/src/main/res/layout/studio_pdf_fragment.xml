@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/studioPdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cameraCardFragment"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="#FFEA00"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp">
+
+            <RelativeLayout
+                android:id="@+id/frontRel"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/cameraPreviewFragment"
+                    android:background="#FFFFFF"
+                    android:layout_centerInParent="true"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </com.github.barteksc.pdfviewer.PDFView>
+
+    <View
+        android:id="@+id/topBlinder2"
+        android:layout_width="match_parent"
+        android:layout_height="385dp"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.4"
+        android:background="#000"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/bottomBlinder2"
+        android:layout_width="match_parent"
+        android:layout_height="285dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="450dp"
+        android:alpha="0.4"
+        android:background="#000"
+        android:visibility="gone" />
+
+
+    <View
+        android:id="@+id/topBlinder"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.4"
+        android:background="#000"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/bottomBlinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="480dp"
+        android:alpha="0.4"
+        android:background="#000"
+        android:visibility="gone" />
+
+</RelativeLayout>
