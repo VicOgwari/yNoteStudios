@@ -21,11 +21,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.midland.ynote.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,13 +34,16 @@ import com.midland.ynote.Activities.UserProfile2;
 import com.midland.ynote.Dialogs.LogInSignUp;
 import com.midland.ynote.Objects.CommentsObject;
 import com.midland.ynote.Objects.SelectedDoc;
+import com.midland.ynote.R;
 import com.midland.ynote.Utilities.FilingSystem;
 import com.midland.ynote.Utilities.UserPowers;
 
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.DocumentVH> implements Filterable {
 
@@ -204,14 +206,38 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
                         break;
 
                     case R.id.misplaced:
-                        FirebaseFirestore.getInstance().collection("Content")
-                                .document("Documents").collection(cloudDoc.getDocMetaData().split("_-_")[1])
-                                .document(cloudDoc.getDocMetaData().split("_-_")[5])
-                                .update("repostCount", FieldValue.increment(1))
-                                .addOnSuccessListener(unused -> Toast.makeText(context, "Thanks for your feedback.", Toast.LENGTH_LONG).show())
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(context, "Try again later.", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user1 != null) {
+                            if (uID.equals(user1.getUid())){
+                                DocumentReference toDelRef = FirebaseFirestore.getInstance().collection("ToDelete")
+                                        .document(cloudDoc.getDocMetaData().split("_-_")[1]);
+                                Map<String, String> toDelete = new HashMap<>();
+                                toDelete.put("School", cloudDoc.getDocMetaData().split("_-_")[1]);
+                                toDelete.put("Name", cloudDoc.getDocMetaData().split("_-_")[5]);
+                                toDelRef.get().addOnSuccessListener(documentSnapshot -> {
+                                    if (documentSnapshot.exists()){
+                                        Toast.makeText(context, "We know about this case.", Toast.LENGTH_LONG).show();
+                                    }else {
+                                       toDelRef.set(toDelete)
+                                                .addOnSuccessListener(documentReference -> {
+                                                    Toast.makeText(context, "We will consider your application.", Toast.LENGTH_LONG).show();
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(context, "Try again later.", Toast.LENGTH_SHORT).show();
+                                                });
+                                    }
                                 });
+
+
+
+                            }else {
+                                Toast.makeText(context, "This is not your document", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            LogInSignUp logInSignUp = new LogInSignUp(con);
+                            logInSignUp.show();
+                        }
+
                         break;
 
                     case R.id.followPublisher:

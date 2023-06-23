@@ -13,13 +13,13 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.midland.ynote.R
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.midland.ynote.Activities.GeneralSearch
 import com.midland.ynote.Activities.UserProfile2
 import com.midland.ynote.Adapters.HomeSliderAdt.HomeSliderVH
 import com.midland.ynote.MainActivity
 import com.midland.ynote.Objects.HomeSliderObj
+import com.midland.ynote.R
 import com.midland.ynote.Utilities.FilingSystem
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -82,6 +82,7 @@ class HomeSliderAdt(
                         FilingSystem.downloadImage(GeneralSearch.touchIV!!, homeSliderObj.userImage)
                     } else {
                         MainActivity.touchIV!!.visibility = View.VISIBLE
+                        MainActivity.close!!.visibility = View.VISIBLE
                         MainActivity.touchIV!!.bringToFront()
                         MainActivity.touchIV!!.setImageResource(R.drawable.ic_hourglass)
                         FilingSystem.downloadImage(MainActivity.touchIV!!, homeSliderObj.userImage)

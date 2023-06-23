@@ -7,7 +7,7 @@
     <item android:title="Download"
         android:id="@+id/downloadDoc"/>
 
-    <item android:title="Reposted doc"
+    <item android:title="Apply for delete"
         android:id="@+id/misplaced"/>
 
     <item android:title="Follow publisher"

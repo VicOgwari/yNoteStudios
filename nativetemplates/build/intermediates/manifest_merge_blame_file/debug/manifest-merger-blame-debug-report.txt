@@ -4,13 +4,13 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="16"
-6-->C:\Users\Vic Og\Desktop\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml
-7        android:targetSdkVersion="33" />
-7-->C:\Users\Vic Og\Desktop\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml
+6-->E:\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="34" />
+7-->E:\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml
 8
 9    <application android:supportsRtl="true" >
-9-->C:\Users\Vic Og\Desktop\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml:3:3-5:17
-9-->C:\Users\Vic Og\Desktop\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml:3:16-42
+9-->E:\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml:2:3-4:17
+9-->E:\Midland Corp\yNot-20210330T130250Z-001\yNot\nativetemplates\src\main\AndroidManifest.xml:2:16-42
 10    </application>
 11
 12</manifest>

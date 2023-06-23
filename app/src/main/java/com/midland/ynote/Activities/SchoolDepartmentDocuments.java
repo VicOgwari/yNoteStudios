@@ -419,19 +419,44 @@ public class SchoolDepartmentDocuments extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == STORAGE_ACCESS_CODE){
-            if (resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
 
-                File selectFile = new File(FilingSystem.Companion.getRealPathFromURI(data.getData(), getApplicationContext()));
-                Intent intent = new Intent(getApplicationContext(), DocumentMetaData.class);
-                intent.putExtra("flag", "home");
-                intent.putExtra("SchoolName", dfd);
-                intent.putExtra("Department", FilingSystem.Companion.getDept());
-                intent.putExtra("selectedDocUri", data.getData().toString());
-                intent.putExtra("selectedDocName", selectFile.getName());
-                int fileSize = Integer.parseInt(String.valueOf(selectFile.length() / 1024));
-                intent.putExtra("selectedDocSize", String.valueOf(fileSize));
+                if (data.getClipData() != null) {
+                    ArrayList<String> objs = new ArrayList<>();
+                    int count = data.getClipData().getItemCount();
+                    for (int i = 0; i < count; i++) {
+                        File selectFile = new File(FilingSystem.Companion.getRealPathFromURI(data.getClipData().getItemAt(i).getUri(), getApplicationContext()));
+                        int fileSize = Integer.parseInt(String.valueOf(selectFile.length() / 1024));
+                        String fileName = selectFile.getName();
+                        String strUri = data.getClipData().getItemAt(i).getUri().toString();
+                        String s = fileSize + "_-_" + fileName + "_-_" + strUri;
+                        objs.add(s);
+                    }
+                    Intent intent = new Intent(getApplicationContext(), MultiUpload.class);
+                    intent.putExtra("SchoolName", dfd);
+                    intent.putExtra("Department", FilingSystem.Companion.getDept());
+                    intent.putStringArrayListExtra("selections", objs);
 
-                startActivity(intent);
+                    startActivity(intent);
+
+                } else
+                if (data.getData() != null){
+                    File selectFile = new File(FilingSystem.Companion.getRealPathFromURI(data.getData(), getApplicationContext()));
+                    Intent intent = new Intent(getApplicationContext(), DocumentMetaData.class);
+                    intent.putExtra("flag", "home");
+                    intent.putExtra("SchoolName", dfd);
+                    intent.putExtra("Department", FilingSystem.Companion.getDept());
+                    intent.putExtra("selectedDocUri", data.getData().toString());
+                    intent.putExtra("selectedDocName", selectFile.getName());
+                    int fileSize = Integer.parseInt(String.valueOf(selectFile.length() / 1024));
+                    intent.putExtra("selectedDocSize", String.valueOf(fileSize));
+
+                    startActivity(intent);
+
+                }
+
+
+
             }
         }
     }

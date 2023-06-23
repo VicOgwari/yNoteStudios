@@ -290,7 +290,7 @@ class UserProfile2 : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        pendingLecBtn!!.setOnClickListener(View.OnClickListener { v: View? ->
+        pendingLecBtn!!.setOnClickListener({ v: View? ->
             if (otherUser == null) {
                 if ((ContextCompat.checkSelfPermission(
                         this@UserProfile2,

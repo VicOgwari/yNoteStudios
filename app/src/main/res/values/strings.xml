@@ -109,13 +109,22 @@
     </string-array>
 
     <string-array name="semesters">
-
         <item> Semester 1 </item>
         <item> Semester 2 </item>
         <item> Semester 3 </item>
         <item> Not applicable </item>
 
     </string-array>
+
+    <string-array name="semesters1">
+        <item> -select a field-  </item>
+        <item> Semester 1 </item>
+        <item> Semester 2 </item>
+        <item> Semester 3 </item>
+        <item> Not applicable </item>
+
+    </string-array>
+
     <string-array name="institutions1">
 
         <item> All </item>
@@ -420,5 +429,10 @@
     <string name="masters">Masters</string>
     <string name="phd">phD</string>
     <string name="any_other_detail">Any other detail...</string>
+    <string name="click_on_me">click on me</string>
+    <string name="multiple_selections">Multiple selections</string>
+    <string name="this_section_auto_assumes">The selected documents will all be published under the same department.</string>
+    <string name="preview">Preview document</string>
+    <string name="prev">Prev</string>
 
 </resources>
