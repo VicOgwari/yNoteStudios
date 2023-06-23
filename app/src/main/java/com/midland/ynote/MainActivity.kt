@@ -225,6 +225,7 @@ class MainActivity : AppCompatActivity(), ProviderInstallListener, MpesaListener
         val educationRV = findViewById<RecyclerView>(R.id.educationRV)
         val popularRV = findViewById<RecyclerView>(R.id.popularRV)
         touchIV = findViewById(R.id.touchIV)
+        close = findViewById(R.id.close)
         card1.bringToFront()
         card2.bringToFront()
         card3.bringToFront()
@@ -232,6 +233,10 @@ class MainActivity : AppCompatActivity(), ProviderInstallListener, MpesaListener
         card5.bringToFront()
         card6.bringToFront()
         card7.bringToFront()
+        close!!.setOnClickListener {
+            touchIV!!.visibility = View.GONE
+            close!!.visibility = View.GONE
+        }
         popularRV.layoutManager =
             LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         educationRV.layoutManager =
@@ -944,6 +949,7 @@ class MainActivity : AppCompatActivity(), ProviderInstallListener, MpesaListener
         if (MainFragment1.touchIV!!.visibility == View.VISIBLE || touchIV!!.visibility == View.VISIBLE) {
             MainFragment1.touchIV!!.visibility = View.GONE
             touchIV!!.visibility = View.GONE
+            close!!.visibility = View.GONE
         } else {
             val count = supportFragmentManager.backStackEntryCount
             if (count == 0) {
@@ -1274,6 +1280,7 @@ class MainActivity : AppCompatActivity(), ProviderInstallListener, MpesaListener
     companion object {
         lateinit var mpesaListener: MpesaListener
         var touchIV: TouchImageView? = null
+        var close: TextView? = null
         private const val READ_PERMISSION = 99
         private const val ERROR_DIALOG_REQUEST_CODE = 1
     }

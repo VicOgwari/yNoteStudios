@@ -75,6 +75,7 @@
             android:layout_marginBottom="2dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_background"
+            android:visibility="gone"
             android:text="Five tags (Optional)" />
 
         <LinearLayout

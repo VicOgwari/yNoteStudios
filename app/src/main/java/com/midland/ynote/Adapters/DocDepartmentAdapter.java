@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.midland.ynote.Activities.LecturesList;
 import com.midland.ynote.Activities.SchoolDepartmentDocuments;
-import com.midland.ynote.Activities.SourceDocList;
 import com.midland.ynote.Objects.SelectedDoc;
 import com.midland.ynote.Objects.SelectedVideo;
 import com.midland.ynote.R;
@@ -2683,6 +2681,7 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
             holder.addDocBtn.setOnClickListener(v -> {
                 Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent2.addCategory(Intent.CATEGORY_OPENABLE);
+                intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent2.setType("application/*");
                 FilingSystem.Companion.setDept(deptTitle);
                 ((Activity)c).startActivityForResult(intent2, STORAGE_ACCESS_CODE);
@@ -5417,15 +5416,13 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
                             DocRetrieval.Companion.setArchitectureTags0(new ArrayList<>());
                             DocRetrieval.Companion.setArchitectureTags1(new ArrayList<>());
                             DocRetrieval.Companion.setArchitectureTags2(new ArrayList<>());
-                            DocRetrieval.Companion.setArchitectureTags3(new ArrayList<>());
 
                             DocRetrieval.Companion.setArchitecture0(new ArrayList<>());
                             DocRetrieval.Companion.setArchitecture1(new ArrayList<>());
                             DocRetrieval.Companion.setArchitecture2(new ArrayList<>());
-                            DocRetrieval.Companion.setArchitecture3(new ArrayList<>());
 
                             for (SelectedDoc document : documents) {
-                                if (document.getDocMetaData().contains(DocSorting.getSubFields(11)[0])) {
+                                if (document.getDocMetaData().contains(DocSorting.getSubFields(17)[0])) {
                                     DocRetrieval.Companion.getArchitecture0().add(document);
                                     DocRetrieval.Companion.setArchitectureAdapter0(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getArchitecture0()));
                                     DocRetrieval.Companion.getArchitectureAdapter0().notifyDataSetChanged();
@@ -5491,12 +5488,10 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt0);
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt1);
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt2);
-                            DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt3);
 
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter0());
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter1());
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter2());
-                            DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter3());
 
 
                             try {

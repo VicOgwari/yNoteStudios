@@ -152,7 +152,11 @@ public class SecondDetails extends Fragment {
                 }else
                 if (unitCode.equals("") && docDetail.equals("")){
                     Toast.makeText(getContext(), "Fill in at least one slot.", Toast.LENGTH_SHORT).show();
-                }else {
+                }else
+                {
+                    if (pastPaper.equals("True")){
+                        FilingSystem.Companion.getAllTags().add("Past papers");
+                    }
                     FilingSystem.Companion.setUnitCode(unitCode);
                     FilingSystem.Companion.setDocDetail(docDetail);
                     FilingSystem.Companion.getAllTags().add( unitCode);
@@ -169,7 +173,6 @@ public class SecondDetails extends Fragment {
                         LogInSignUp logInSignUp = new LogInSignUp(getContext());
                         logInSignUp.show();
                     }else {
-                        FilingSystem.Companion.getAllTags().add("Past papers");
                         PublishApproval publishApproval1 = new PublishApproval(getContext(),
                                 docMetaData, FilingSystem.Companion.getInstitution(), FilingSystem.Companion.getSemester(),
                                 Uri.parse(docUri), null, FirebaseAuth.getInstance().getCurrentUser(),

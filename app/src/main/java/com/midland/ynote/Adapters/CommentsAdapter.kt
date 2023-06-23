@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.borjabravo.readmoretextview.ReadMoreTextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.midland.ynote.Activities.Replies
 import com.midland.ynote.Activities.UserProfile2
 import com.midland.ynote.Adapters.CommentsAdapter.PointsVH
@@ -25,8 +27,6 @@ import com.midland.ynote.MainActivity
 import com.midland.ynote.Objects.CommentsObject
 import com.midland.ynote.R
 import com.midland.ynote.Utilities.FilingSystem
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.ortiz.touchview.TouchImageView
 import com.squareup.picasso.Picasso
 
@@ -77,6 +77,7 @@ class CommentsAdapter(private val c: Context, private val commentsObjects: Array
                         holder.imageComment.setOnClickListener {
                             if (touchIV != null) {
                                 MainActivity.touchIV!!.visibility = View.VISIBLE
+                                MainActivity.close!!.visibility = View.VISIBLE
                                 MainActivity.touchIV!!.bringToFront()
                                 MainActivity.touchIV!!.setImageResource(R.drawable.ic_hourglass)
                                 FilingSystem.downloadImage(

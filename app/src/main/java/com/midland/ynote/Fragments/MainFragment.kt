@@ -8,6 +8,7 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -89,6 +90,9 @@ class MainFragment : Fragment() {
         localContentRel = root.findViewById(R.id.localContentRel)
         recentDocsRel = root.findViewById(R.id.recentDocsRel)
         touchIV = root.findViewById(R.id.touchIV)
+        toggleProfile = root.findViewById(R.id.toggleProfile)
+        toggleProfile!!.bringToFront()
+        val homeIm = root.findViewById<ImageView>(R.id.homeImage)
         val libraryButton = root.findViewById<Button>(R.id.libraryButton)
         val schoolsButton = root.findViewById<Button>(R.id.schoolsButton)
         val studioButton = root.findViewById<Button>(R.id.studioButton)
@@ -129,7 +133,7 @@ class MainFragment : Fragment() {
         navRight1 = root.findViewById(R.id.navRight1)
         searchDocs = root.findViewById(R.id.searchDocs)
         searchRecentDocs = root.findViewById(R.id.searchRecentDocs)
-        homeVP!!.bringToFront()
+//        homeVP!!.bringToFront()
         val glowLay = root.findViewById<LinearLayout>(R.id.linLayGlow)
         animatorSet = AnimatorSet()
         slideHandler = Handler()
@@ -261,6 +265,30 @@ class MainFragment : Fragment() {
             homeSliderRV!!.adapter = homeSliderAdt
             homeVP!!.adapter = homeSliderAdt
         }.addOnFailureListener { e: Exception? -> }
+
+        Glide.with(context!!).load(R.drawable.lib1).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.libraryImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.stud_background22).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.studioImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.lecturehall).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.lecturesImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.schools_acad_disciplines).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.academicDis) as ImageView))
+
+        toggleProfile!!.setOnClickListener {
+            if (homeVP!!.visibility == View.VISIBLE){
+                homeVP!!.visibility = View.GONE
+                homeIm.visibility = View.VISIBLE
+                toggleProfile!!.setBackgroundColor(Color.YELLOW)
+                toggleProfile!!.setImageResource(R.drawable.ic_people)
+            }else
+                if (homeVP!!.visibility == View.GONE){
+                    homeVP!!.visibility = View.VISIBLE
+                    homeIm.visibility = View.GONE
+                    toggleProfile!!.setBackgroundColor(Color.BLACK)
+                    toggleProfile!!.setImageResource(R.drawable.ic_stop_circle)
+                }
+        }
         profileButton.setOnClickListener { v: View? ->
 //            Snackbar.make(v.findViewById(R.id.homeRel), "You can't flex like this..", BaseTransientBottomBar.LENGTH_LONG).show();
             val intent = Intent(context, UserProfile2::class.java)
@@ -319,14 +347,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-        Glide.with(context!!).load(R.drawable.lib1).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.libraryImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.stud_background22).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.studioImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.lecturehall).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.lecturesImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.schools_acad_disciplines).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.academicDis) as ImageView))
         studioButton.setOnClickListener { v: View? ->
             if (ContextCompat.checkSelfPermission(
                     context!!, Manifest.permission.CAMERA
@@ -428,6 +448,7 @@ class MainFragment : Fragment() {
                 }
             }
         }
+
         return root
     }
 
@@ -470,6 +491,7 @@ class MainFragment : Fragment() {
 
     companion object {
         var touchIV: TouchImageView? = null
+        var toggleProfile: ImageButton? = null
         private const val READ_PERMISSION = 99
 
         // TODO: Rename parameter arguments, choose names that match

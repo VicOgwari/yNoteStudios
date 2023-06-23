@@ -29,7 +29,7 @@ android {
         applicationId "com.midland.ynote"
         minSdk 21
         targetSdk 33
-        versionCode 12
+        versionCode 15
         versionName "1.0"
         multiDexEnabled true
 
@@ -172,7 +172,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.2.1"
 
     //Admob
-    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
 
     //Camera X
     def camerax_version = "1.1.0-beta01"
@@ -216,6 +216,10 @@ dependencies {
 
     //volley lib
     implementation 'com.android.volley:volley:1.2.1'
+
+    //mopub
+    implementation 'com.mopub:mopub-sdk:5.18.0'
+
 
 
 }

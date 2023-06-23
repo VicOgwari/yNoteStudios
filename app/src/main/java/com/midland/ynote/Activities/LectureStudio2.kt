@@ -159,6 +159,8 @@ class LectureStudio2 : AppCompatActivity(), ProviderInstaller.ProviderInstallLis
         cameraRel = findViewById(R.id.cameraRel)
         viewPager = findViewById(R.id.studio_view_pager)
         projectorRV = findViewById(R.id.projectorRV)
+        //PAINT
+        initView()
         projectorRV!!.layoutManager = LinearLayoutManager(
             applicationContext,
             RecyclerView.HORIZONTAL, false
@@ -429,8 +431,7 @@ class LectureStudio2 : AppCompatActivity(), ProviderInstaller.ProviderInstallLis
             startForegroundService(intent)
         }
 
-        //PAINT
-        initView()
+
         areYouSure = AlertDialog.Builder(this@LectureStudio2)
             .setTitle("Exiting studio.")
             .setMessage("Your are leaving the studio. Do you wish to save your lecture? Saving will half the dimensions of your illustration.")
@@ -1211,12 +1212,16 @@ class LectureStudio2 : AppCompatActivity(), ProviderInstaller.ProviderInstallLis
         return if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
             // Create an instance of Camera
             mCamera = openFrontFacingCameraGingerbread()
-            mCamera!!.setDisplayOrientation(90)
-            // Create our Preview view and set it as the content of our activity.
-            mPreview = CameraPreview(this, mCamera)
-            preview!!.addView(mPreview)
+            if (mCamera != null){
+                mCamera?.setDisplayOrientation(90)
+                // Create our Preview view and set it as the content of our activity.
+                mPreview = CameraPreview(this, mCamera)
+                preview!!.addView(mPreview)
+                 true
+            }else{
+                false
+            }
 
-            true
         } else {
             Toast.makeText(
                 applicationContext,

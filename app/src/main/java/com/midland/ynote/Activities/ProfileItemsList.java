@@ -261,8 +261,6 @@ public class ProfileItemsList extends AppCompatActivity {
                                                         ProfileItemsList.this, documents);
                                                 documentAdapter.notifyDataSetChanged();
                                                 shelfRV.setAdapter(documentAdapter);
-                                                Toast.makeText(getApplicationContext(), document.getDocMetaData(), Toast.LENGTH_SHORT).show();
-                                                Toast.makeText(getApplicationContext(), document.getKnowledgeBase(), Toast.LENGTH_SHORT).show();
                                             }else {
                                                 Toast.makeText(getApplicationContext(), "Couldn't find none", Toast.LENGTH_SHORT).show();
                                             }
