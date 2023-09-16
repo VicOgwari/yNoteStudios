@@ -3,8 +3,8 @@ package com.midland.ynote.Adapters;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.midland.ynote.Activities.LecturesList;
 import com.midland.ynote.Activities.SchoolDepartmentDocuments;
+import com.midland.ynote.Activities.SourceDocList;
 import com.midland.ynote.Objects.SelectedDoc;
 import com.midland.ynote.Objects.SelectedVideo;
 import com.midland.ynote.R;
@@ -2681,29 +2681,11 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
             if (flag.equals("SchoolDptDocuments")) {
             holder.addDocBtn.bringToFront();
             holder.addDocBtn.setOnClickListener(v -> {
-                AlertDialog dialog = new AlertDialog.Builder(c)
-                        .setTitle(deptTitle)
-                        .setMessage("All documents you select shall be published in the '" + deptTitle + "' department.")
-                        .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                                intent2.addCategory(Intent.CATEGORY_OPENABLE);
-                                intent2.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                                intent2.setType("application/*");
-                                FilingSystem.Companion.setDept(deptTitle);
-                                ((Activity)c).startActivityForResult(intent2, STORAGE_ACCESS_CODE);
-                            }
-                        })
-                        .setNegativeButton("Change", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                Toast.makeText(c, "+", Toast.LENGTH_SHORT).show();
-                            }
-                        }).create();
-                dialog.show();
-
+                Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent2.addCategory(Intent.CATEGORY_OPENABLE);
+                intent2.setType("application/*");
+                FilingSystem.Companion.setDept(deptTitle);
+                ((Activity)c).startActivityForResult(intent2, STORAGE_ACCESS_CODE);
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 //                    Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 //                    intent2.addCategory(Intent.CATEGORY_OPENABLE);
@@ -5321,92 +5303,95 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
                     departmentsArray = DocSorting.getSubFields(16);
                     schoolDepartments.addAll(Arrays.asList(departmentsArray));
 
-                    publishedDocs.collection(dfd).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                        documents = new ArrayList<>();
-                        for (QueryDocumentSnapshot qds : queryDocumentSnapshots) {
-                            SelectedDoc document = qds.toObject(SelectedDoc.class);
-                            documents.add(document);
-                        }
-
-                        DocRetrieval.Companion.setCreativeArtTags0(new ArrayList<>());
-                        DocRetrieval.Companion.setCreativeArtTags1(new ArrayList<>());
-
-                        DocRetrieval.Companion.setCreativeArt0(new ArrayList<>());
-                        DocRetrieval.Companion.setCreativeArt1(new ArrayList<>());
-
-                        for (SelectedDoc document : documents) {
-                            if (document.getDocMetaData().contains(DocSorting.getSubFields(16)[0])) {
-                                DocRetrieval.Companion.getCreativeArt0().add(document);
-                                DocRetrieval.Companion.setCreativeArtAdapter0(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getCreativeArt0()));
-                                DocRetrieval.Companion.getCreativeArtAdapter0().notifyDataSetChanged();
-
-
-                                String tags = document.getDocMetaData().split("_-_")[6].replace("[", "").replace("]", "");
-                                if (tags.split(",").length > 0) {
-                                    ArrayList<String> tagsProcessor = new ArrayList<>();
-                                    Collections.addAll(tagsProcessor, document.getDocMetaData().split("_-_")[6].split(","));
-                                    for (int i = 0; i < tagsProcessor.size(); i++) {
-                                        if (!(DocRetrieval.Companion.getCreativeArtTags0().contains(tagsProcessor.get(i)))) {
-                                            DocRetrieval.Companion.getCreativeArtTags0().add(tagsProcessor.get(i));
-                                        }
-                                    }
-                                }
-                                subFieldAdt0 = new SubFieldAdt(c, DocRetrieval.Companion.getCreativeArtTags0(), null, DocRetrieval.Companion.getCreativeArtAdapter0());
-                                subFieldAdt0.notifyDataSetChanged();
+                    publishedDocs.collection(dfd).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            documents = new ArrayList<>();
+                            for (QueryDocumentSnapshot qds : queryDocumentSnapshots) {
+                                SelectedDoc document = qds.toObject(SelectedDoc.class);
+                                documents.add(document);
                             }
 
-                            if (document.getDocMetaData().contains(DocSorting.getSubFields(16)[1])) {
-                                DocRetrieval.Companion.getCreativeArt1().add(document);
-                                DocRetrieval.Companion.setCreativeArtAdapter1(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getCreativeArt1()));
-                                DocRetrieval.Companion.getCreativeArtAdapter1().notifyDataSetChanged();
+                            DocRetrieval.Companion.setCreativeArtTags0(new ArrayList<>());
+                            DocRetrieval.Companion.setCreativeArtTags1(new ArrayList<>());
 
-                                String tags = document.getDocMetaData().split("_-_")[6].replace("[", "").replace("]", "");
-                                if (tags.split(",").length > 0) {
-                                    ArrayList<String> tagsProcessor = new ArrayList<>();
-                                    Collections.addAll(tagsProcessor, document.getDocMetaData().split("_-_")[6].split(","));
-                                    for (int i = 0; i < tagsProcessor.size(); i++) {
-                                        if (!(DocRetrieval.Companion.getCreativeArtTags1().contains(tagsProcessor.get(i)))) {
-                                            DocRetrieval.Companion.getCreativeArtTags1().add(tagsProcessor.get(i));
+                            DocRetrieval.Companion.setCreativeArt0(new ArrayList<>());
+                            DocRetrieval.Companion.setCreativeArt1(new ArrayList<>());
+
+                            for (SelectedDoc document : documents) {
+                                if (document.getDocMetaData().contains(DocSorting.getSubFields(16)[0])) {
+                                    DocRetrieval.Companion.getCreativeArt0().add(document);
+                                    DocRetrieval.Companion.setCreativeArtAdapter0(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getCreativeArt0()));
+                                    DocRetrieval.Companion.getCreativeArtAdapter0().notifyDataSetChanged();
+
+
+                                    String tags = document.getDocMetaData().split("_-_")[6].replace("[", "").replace("]", "");
+                                    if (tags.split(",").length > 0) {
+                                        ArrayList<String> tagsProcessor = new ArrayList<>();
+                                        Collections.addAll(tagsProcessor, document.getDocMetaData().split("_-_")[6].split(","));
+                                        for (int i = 0; i < tagsProcessor.size(); i++) {
+                                            if (!(DocRetrieval.Companion.getCreativeArtTags0().contains(tagsProcessor.get(i)))) {
+                                                DocRetrieval.Companion.getCreativeArtTags0().add(tagsProcessor.get(i));
+                                            }
                                         }
                                     }
+                                    subFieldAdt0 = new SubFieldAdt(c, DocRetrieval.Companion.getCreativeArtTags0(), null, DocRetrieval.Companion.getCreativeArtAdapter0());
+                                    subFieldAdt0.notifyDataSetChanged();
                                 }
-                                subFieldAdt1 = new SubFieldAdt(c, DocRetrieval.Companion.getCreativeArtTags1(), null, DocRetrieval.Companion.getCreativeArtAdapter1());
-                                subFieldAdt1.notifyDataSetChanged();
+
+                                if (document.getDocMetaData().contains(DocSorting.getSubFields(16)[1])) {
+                                    DocRetrieval.Companion.getCreativeArt1().add(document);
+                                    DocRetrieval.Companion.setCreativeArtAdapter1(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getCreativeArt1()));
+                                    DocRetrieval.Companion.getCreativeArtAdapter1().notifyDataSetChanged();
+
+                                    String tags = document.getDocMetaData().split("_-_")[6].replace("[", "").replace("]", "");
+                                    if (tags.split(",").length > 0) {
+                                        ArrayList<String> tagsProcessor = new ArrayList<>();
+                                        Collections.addAll(tagsProcessor, document.getDocMetaData().split("_-_")[6].split(","));
+                                        for (int i = 0; i < tagsProcessor.size(); i++) {
+                                            if (!(DocRetrieval.Companion.getCreativeArtTags1().contains(tagsProcessor.get(i)))) {
+                                                DocRetrieval.Companion.getCreativeArtTags1().add(tagsProcessor.get(i));
+                                            }
+                                        }
+                                    }
+                                    subFieldAdt1 = new SubFieldAdt(c, DocRetrieval.Companion.getCreativeArtTags1(), null, DocRetrieval.Companion.getCreativeArtAdapter1());
+                                    subFieldAdt1.notifyDataSetChanged();
+                                }
+
+                            }
+
+                            holder.readProgress.setVisibility(View.INVISIBLE);
+
+                            DocRetrieval.Companion.getCreativeArtTagsArray().add(subFieldAdt0);
+                            DocRetrieval.Companion.getCreativeArtTagsArray().add(subFieldAdt1);
+
+                            DocRetrieval.Companion.getCreativeArtAdapters().add(DocRetrieval.Companion.getCreativeArtAdapter0());
+                            DocRetrieval.Companion.getCreativeArtAdapters().add(DocRetrieval.Companion.getCreativeArtAdapter1());
+
+
+                            try {
+
+                                holder.docDisplayRV.setAdapter(DocRetrieval.Companion.getCreativeArtAdapters().get(holder.getAbsoluteAdapterPosition()));
+                                holder.docTags.setAdapter(DocRetrieval.Companion.getCreativeArtTagsArray().get(holder.getAbsoluteAdapterPosition()));
+
+                                holder.departmentIndicator.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+                                            holder.docDisplayRV.smoothScrollToPosition(DocRetrieval.Companion.getCreativeArtAdapters().get(holder.getAbsoluteAdapterPosition()).docPosition++);
+                                            holder.docTags.smoothScrollToPosition(DocRetrieval.Companion.getCreativeArtTagsArray().get(holder.getAbsoluteAdapterPosition()).getTagPosition() + 1);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
 
                         }
-
-                        holder.readProgress.setVisibility(View.INVISIBLE);
-
-                        DocRetrieval.Companion.getCreativeArtTagsArray().add(subFieldAdt0);
-                        DocRetrieval.Companion.getCreativeArtTagsArray().add(subFieldAdt1);
-
-                        DocRetrieval.Companion.getCreativeArtAdapters().add(DocRetrieval.Companion.getCreativeArtAdapter0());
-                        DocRetrieval.Companion.getCreativeArtAdapters().add(DocRetrieval.Companion.getCreativeArtAdapter1());
-
-
-                        try {
-
-                            holder.docDisplayRV.setAdapter(DocRetrieval.Companion.getCreativeArtAdapters().get(holder.getAbsoluteAdapterPosition()));
-                            holder.docTags.setAdapter(DocRetrieval.Companion.getCreativeArtTagsArray().get(holder.getAbsoluteAdapterPosition()));
-
-                            holder.departmentIndicator.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    try {
-                                        holder.docDisplayRV.smoothScrollToPosition(DocRetrieval.Companion.getCreativeArtAdapters().get(holder.getAbsoluteAdapterPosition()).docPosition++);
-                                        holder.docTags.smoothScrollToPosition(DocRetrieval.Companion.getCreativeArtTagsArray().get(holder.getAbsoluteAdapterPosition()).getTagPosition() + 1);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -5432,13 +5417,15 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
                             DocRetrieval.Companion.setArchitectureTags0(new ArrayList<>());
                             DocRetrieval.Companion.setArchitectureTags1(new ArrayList<>());
                             DocRetrieval.Companion.setArchitectureTags2(new ArrayList<>());
+                            DocRetrieval.Companion.setArchitectureTags3(new ArrayList<>());
 
                             DocRetrieval.Companion.setArchitecture0(new ArrayList<>());
                             DocRetrieval.Companion.setArchitecture1(new ArrayList<>());
                             DocRetrieval.Companion.setArchitecture2(new ArrayList<>());
+                            DocRetrieval.Companion.setArchitecture3(new ArrayList<>());
 
                             for (SelectedDoc document : documents) {
-                                if (document.getDocMetaData().contains(DocSorting.getSubFields(17)[0])) {
+                                if (document.getDocMetaData().contains(DocSorting.getSubFields(11)[0])) {
                                     DocRetrieval.Companion.getArchitecture0().add(document);
                                     DocRetrieval.Companion.setArchitectureAdapter0(new DocumentAdapter(thisSchool, context, c, DocRetrieval.Companion.getArchitecture0()));
                                     DocRetrieval.Companion.getArchitectureAdapter0().notifyDataSetChanged();
@@ -5504,10 +5491,12 @@ public class DocDepartmentAdapter extends RecyclerView.Adapter<DocDepartmentAdap
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt0);
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt1);
                             DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt2);
+                            DocRetrieval.Companion.getArchitectureTagsArray().add(subFieldAdt3);
 
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter0());
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter1());
                             DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter2());
+                            DocRetrieval.Companion.getArchitectureAdapters().add(DocRetrieval.Companion.getArchitectureAdapter3());
 
 
                             try {

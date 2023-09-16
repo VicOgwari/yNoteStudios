@@ -42,8 +42,6 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.midland.ynote.Activities.SchoolDepartmentDocuments;
 import com.midland.ynote.Adapters.MotionPicturesSubCatRV;
-import com.midland.ynote.Adapters.ToBePublishedAdapter;
-import com.midland.ynote.Objects.Publishable;
 import com.midland.ynote.R;
 
 import java.util.ArrayList;
@@ -56,11 +54,8 @@ public class PublishApproval extends Dialog {
 
     int endColor;
     ImageView coverImage, docEmblem;
-    TextView docTitle, docDesc, userHandle, indicator;
-    RecyclerView multiUploadRv;
+    TextView docTitle, docDesc, userHandle;
     RecyclerView tagsRV;
-    ProgressBar upProgress;
-    ToBePublishedAdapter toBePublishedAdapter;
     RelativeLayout relApproval;
     Button options, publish;
     String metaData, institution, semester;
@@ -71,8 +66,7 @@ public class PublishApproval extends Dialog {
     Uri docUri, coverUri;
     String unitCode, docDetails;
     ArrayList<String> docTags;
-    ArrayList<Publishable> publishables;
-    CardView metaDataApprovalCard, lectureCardApproval, multiCard;
+    CardView metaDataApprovalCard;
     StorageReference shelfStorageRef = FirebaseStorage.getInstance().getReference("Documents");
 
 
@@ -91,11 +85,6 @@ public class PublishApproval extends Dialog {
         this.docTags = docTags;
     }
 
-    public PublishApproval(Context applicationContext, ArrayList<Publishable> publishables) {
-        super(applicationContext);
-        this.publishables = publishables;
-    }
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,100 +101,68 @@ public class PublishApproval extends Dialog {
         userHandle = findViewById(R.id.publishedByApproval);
         tagsRV = findViewById(R.id.tagsRVApproval);
         metaDataApprovalCard = findViewById(R.id.metaDataApprovalCard);
-        lectureCardApproval = findViewById(R.id.lectureCardApproval);
-        multiCard = findViewById(R.id.multiCard);
         relApproval = findViewById(R.id.relFeedApproval);
         metaDataApprovalCard.bringToFront();
 
-        if (publishables == null) {
-            lectureCardApproval.setVisibility(View.VISIBLE);
-            lectureCardApproval.bringToFront();
-            multiCard.setVisibility(View.GONE);
 
-            tagsRV.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-            MotionPicturesSubCatRV tagsAdapter = new MotionPicturesSubCatRV(getContext(), docTags, "");
-            tagsAdapter.notifyDataSetChanged();
-            tagsRV.setAdapter(tagsAdapter);
+        tagsRV.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        MotionPicturesSubCatRV tagsAdapter = new MotionPicturesSubCatRV(getContext(), docTags, "");
+        tagsAdapter.notifyDataSetChanged();
+        tagsRV.setAdapter(tagsAdapter);
 
-            userHandle.setText(user.getDisplayName());
+        userHandle.setText(user.getDisplayName());
 
-            docTitle.setText(metaData.split("_-_")[5]);
-            if (docUri.toString().endsWith("pdf") || docUri.toString().endsWith("PDF")) {
-                Glide.with(getContext()).load(R.drawable.pdf).fitCenter().into(docEmblem);
-            } else if (docUri.toString().endsWith("doc") || docUri.toString().endsWith("DOC")
-                    || docUri.toString().endsWith("docx") || docUri.toString().endsWith("DOCX")) {
-                Glide.with(getContext()).load(R.drawable.microsoft_word).fitCenter().into(docEmblem);
-            } else if (docUri.toString().endsWith("ppt") || docUri.toString().endsWith("PPT")
-                    || docUri.toString().endsWith("pptx") || docUri.toString().endsWith("PPTX")) {
-                Glide.with(getContext()).load(R.drawable.powerpoint).fitCenter().into(docEmblem);
-            }
-            if (coverUri != null) {
-                Glide.with(getContext()).load(coverUri).thumbnail((float) 0.9).into(coverImage);
-            }
-
-            options.setOnClickListener(v -> {
-                PopupMenu popupMenu = new PopupMenu(getContext(), docEmblem);
-                popupMenu.getMenuInflater().inflate(R.menu.doc_approval_menu, popupMenu.getMenu());
-                popupMenu.show();
-
-                popupMenu.setOnMenuItemClickListener(item -> {
-                    if (item.getItemId() == R.id.docDetails) {
-                        if (metaDataApprovalCard.getVisibility() == View.GONE) {
-                            metaDataApprovalCard.setVisibility(View.VISIBLE);
-                        } else if (metaDataApprovalCard.getVisibility() == View.VISIBLE) {
-                            metaDataApprovalCard.setVisibility(View.GONE);
-                        }
-                    }
-
-                    if (item.getItemId() == R.id.adjustCover) {
-                        Toast.makeText(getContext(), "Adjust Cover", Toast.LENGTH_SHORT).show();
-                    }
-
-                    if (item.getItemId() == R.id.removeCover) {
-                        Toast.makeText(getContext(), "Adjust Cover", Toast.LENGTH_SHORT).show();
-                    }
-                    return false;
-                });
-            });
-
-            publish.setOnClickListener(v -> {
-                uploadDoc();
-            });
-
-            relApproval.setOnClickListener(v -> {
-                Random r = new Random();
-                endColor = Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256));
-                GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{Color.WHITE, endColor});
-                relApproval.setBackground(gd);
-            });
-        } else {
-            multiUploadRv = findViewById(R.id.multiUploadRv);
-            Publishable p = publishables.get(0);
-            String sch = p.docMetaData.split("_-_")[0];
-            String dpt = p.docMetaData.split("_-_")[1];
-            String s = "To be published under the '" + dpt
-                    + "' department in the school of '" + sch + "'";
-            indicator = findViewById(R.id.indicator);
-            upProgress = findViewById(R.id.upProgress);
-            indicator.setText(s);
-            indicator.bringToFront();
-            upProgress.bringToFront();
-            multiUploadRv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-            toBePublishedAdapter = new ToBePublishedAdapter(getContext(), publishables);
-            toBePublishedAdapter.notifyDataSetChanged();
-            multiUploadRv.setAdapter(toBePublishedAdapter);
-            lectureCardApproval.setVisibility(View.INVISIBLE);
-            multiCard.setVisibility(View.VISIBLE);
-            multiCard.bringToFront();
-            publish.setOnClickListener(v -> {
-                upProgress.setVisibility(View.VISIBLE);
-                upProgress.bringToFront();
-                uploadDocs(publishables);
-            });
+        docTitle.setText(metaData.split("_-_")[5]);
+        if (docUri.toString().endsWith("pdf") || docUri.toString().endsWith("PDF")) {
+            Glide.with(getContext()).load(R.drawable.pdf).fitCenter().into(docEmblem);
+        } else if (docUri.toString().endsWith("doc") || docUri.toString().endsWith("DOC")
+                || docUri.toString().endsWith("docx") || docUri.toString().endsWith("DOCX")) {
+            Glide.with(getContext()).load(R.drawable.microsoft_word).fitCenter().into(docEmblem);
+        } else if (docUri.toString().endsWith("ppt") || docUri.toString().endsWith("PPT")
+                || docUri.toString().endsWith("pptx") || docUri.toString().endsWith("PPTX")) {
+            Glide.with(getContext()).load(R.drawable.powerpoint).fitCenter().into(docEmblem);
+        }
+        if (coverUri != null) {
+            Glide.with(getContext()).load(coverUri).thumbnail((float) 0.9).into(coverImage);
         }
 
+        options.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(getContext(), docEmblem);
+            popupMenu.getMenuInflater().inflate(R.menu.doc_approval_menu, popupMenu.getMenu());
+            popupMenu.show();
 
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.docDetails) {
+                    if (metaDataApprovalCard.getVisibility() == View.GONE) {
+                        metaDataApprovalCard.setVisibility(View.VISIBLE);
+                    } else if (metaDataApprovalCard.getVisibility() == View.VISIBLE) {
+                        metaDataApprovalCard.setVisibility(View.GONE);
+                    }
+                }
+
+                if (item.getItemId() == R.id.adjustCover) {
+                    Toast.makeText(getContext(), "Adjust Cover", Toast.LENGTH_SHORT).show();
+                }
+
+                if (item.getItemId() == R.id.removeCover) {
+                    Toast.makeText(getContext(), "Adjust Cover", Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            });
+        });
+
+
+        publish.setOnClickListener(v ->{
+            uploadDoc();
+        });
+
+        relApproval.setOnClickListener(v -> {
+            Random r = new Random();
+            endColor = Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256));
+            GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+                    new int[]{Color.WHITE, endColor});
+            relApproval.setBackground(gd);
+        });
     }
 
     @Override
@@ -230,115 +187,114 @@ public class PublishApproval extends Dialog {
     private void uploadDoc() {
         if (uploadTask != null && uploadTask.isInProgress()) {
             Toast.makeText(getContext(), "Give me a sec!", Toast.LENGTH_SHORT).show();
-        }
-        final DocumentReference docRef = FirebaseFirestore.getInstance().collection("Field count")
-                .document(replacer(metaData.split("_-_")[0]));
+        }else {
+            final DocumentReference docRef = FirebaseFirestore.getInstance().collection("Field count")
+                    .document(replacer(metaData.split("_-_")[0]));
 
-        final DocumentReference uploadingUser = FirebaseFirestore.getInstance().collection("Users")
-                .document(user.getUid());
+            final DocumentReference uploadingUser = FirebaseFirestore.getInstance().collection("Users")
+                    .document(user.getUid());
 
-        final DocumentReference docCount = FirebaseFirestore.getInstance().collection("Count")
-                .document("Documents count");
+            final DocumentReference docCount = FirebaseFirestore.getInstance().collection("Count")
+                    .document("Documents count");
 
-        final DocumentReference publishedDocs = FirebaseFirestore.getInstance().collection("Content")
-                .document("Documents")
-                .collection(replacer(metaData.split("_-_")[0]))
-                .document(replacer(metaData.split("_-_")[5]));
+            final DocumentReference publishedDocs = FirebaseFirestore.getInstance().collection("Content")
+                    .document("Documents")
+                    .collection(replacer(metaData.split("_-_")[0]))
+                    .document(replacer(metaData.split("_-_")[5]));
 
-        final StorageReference fileReference = shelfStorageRef.child(metaData.split("_-_")[5] + "." + getFileExtension(docUri));
-        uploadProgress.setVisibility(View.VISIBLE);
-        uploadProgress.bringToFront();
+            final StorageReference fileReference = shelfStorageRef.child(metaData.split("_-_")[5] + "." + getFileExtension(docUri));
+            uploadProgress.setVisibility(View.VISIBLE);
+            uploadProgress.bringToFront();
 
-        publishedDocs.get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Toast.makeText(getContext(), "Duplicate found...", Toast.LENGTH_SHORT).show();
-                    } else {
-                        final Uri[] downloadLink = new Uri[1];
-                         uploadTask = fileReference.putFile(docUri)
-                                .addOnSuccessListener(taskSnapshot -> {
+            publishedDocs.get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            Toast.makeText(getContext(), "Duplicate found...", Toast.LENGTH_SHORT).show();
+                        } else {
+                            final Uri[] downloadLink = new Uri[1];
+                            uploadTask = fileReference.putFile(docUri)
+                                    .addOnSuccessListener(taskSnapshot -> {
 
-                                    Task<Uri> uriTask = uploadTask.continueWithTask(task -> {
-                                        if (!task.isSuccessful()) {
-                                            throw task.getException();
-                                        }
-                                        return fileReference.getDownloadUrl();
+                                        Task<Uri> uriTask = uploadTask.continueWithTask(task -> {
+                                            if (!task.isSuccessful()) {
+                                                throw task.getException();
+                                            }
+                                            return fileReference.getDownloadUrl();
 
 
-                                    }).addOnCompleteListener(task -> {
-                                        if (task.isSuccessful()) {
-                                            if (coverUri == null) {
-                                                StringBuilder searchableDocDetail = new StringBuilder();
-                                                if (metaData.split("_-_")[5] != null) {
-                                                    int size = metaData.split("_-_")[5].split(" ").length;
-                                                    if (size > 9) {
-                                                        for (int i = 0; i < 9; i++) {
-                                                            searchableDocDetail.append(metaData.split("_-_")[5].split(" ")[i]);
-                                                        }
-                                                    } else {
-                                                        for (int i = 0; i < size; i++) {
-                                                            searchableDocDetail.append(metaData.split("_-_")[5].split(" ")[i]);
+                                        }).addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                if (coverUri == null) {
+                                                    StringBuilder searchableDocDetail = new StringBuilder();
+                                                    if (metaData.split("_-_")[5] != null) {
+                                                        int size = metaData.split("_-_")[5].split(" ").length;
+                                                        if (size > 9) {
+                                                            for (int i = 0; i < 9; i++) {
+                                                                searchableDocDetail.append(metaData.split("_-_")[5].split(" ")[i]);
+                                                            }
+                                                        } else {
+                                                            for (int i = 0; i < size; i++) {
+                                                                searchableDocDetail.append(metaData.split("_-_")[5].split(" ")[i]);
+                                                            }
                                                         }
                                                     }
-                                                }
 
-                                                String searchableString = "";
-                                                if (metaData.split("_-_")[4] != null) {
-                                                    searchableString = metaData.split("_-_")[4] + " " + searchableDocDetail;
-                                                } else {
-                                                    searchableString = valueOf(searchableDocDetail);
-                                                }
+                                                    String searchableString = "";
+                                                    if (metaData.split("_-_")[4] != null) {
+                                                        searchableString = metaData.split("_-_")[4] + " " + searchableDocDetail;
+                                                    } else {
+                                                        searchableString = valueOf(searchableDocDetail);
+                                                    }
 
 //                                                List<String> searchKeywords = Publisher.Comp.generateSearchKeyWord(searchableString);
 
-                                                downloadLink[0] = task.getResult();
+                                                    downloadLink[0] = task.getResult();
 
 //                                                        final SelectedDoc selectedDoc = new SelectedDoc(metaData + "_-_"
 //                                                                + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor,
 //                                                                downloadLink[0].toString() + "_-_", user.getUid(),
 //                                                                searchKeywords, metaData.split("_-_")[1], metaData.split("_-_")[2]);
 
-                                                Map<String, Object> docMap = new HashMap<>();
-                                                docMap.put("docMetaData", metaData + "_-_" + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor);
-                                                docMap.put("search_keyword", metaData.split("_-_")[5]);
-                                                docMap.put("docDownloadLink", downloadLink[0].toString());
-                                                docMap.put("coverDownloadLink", null);
-                                                docMap.put("uid", user.getUid());
-                                                docMap.put("institution", institution);
-                                                docMap.put("mainField", metaData.split("_-_")[0]);
-                                                docMap.put("subField", metaData.split("_-_")[1]);
-                                                docMap.put("knowledgeBase", metaData.split("_-_")[2]);
-                                                docMap.put("semester", semester);
-                                                docMap.put("unitCode", unitCode);
-                                                docMap.put("timeStamp", System.currentTimeMillis());
-                                                docMap.put("pastPaper", docTags.get(docTags.size() - 1));
-                                                docMap.put("docDetails", docDetails);
-                                                docMap.put("thumbNail", null);
-                                                docMap.put("commentsCount", 0);
-                                                docMap.put("saveCount", 0);
-                                                docMap.put("ratersCount", 0);
-                                                docMap.put("ratings", 0);
-                                                docMap.put("price", 23);
-                                                docMap.put("status", "active");
+                                                    Map<String, Object> docMap = new HashMap<>();
+                                                    docMap.put("docMetaData", metaData + "_-_" + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor);
+                                                    docMap.put("search_keyword", metaData.split("_-_")[5]);
+                                                    docMap.put("docDownloadLink", downloadLink[0].toString());
+                                                    docMap.put("coverDownloadLink", null);
+                                                    docMap.put("uid", user.getUid());
+                                                    docMap.put("institution", institution);
+                                                    docMap.put("mainField", metaData.split("_-_")[0]);
+                                                    docMap.put("subField", metaData.split("_-_")[1]);
+                                                    docMap.put("knowledgeBase", metaData.split("_-_")[2]);
+                                                    docMap.put("semester", semester);
+                                                    docMap.put("unitCode", unitCode);
+                                                    docMap.put("timeStamp", System.currentTimeMillis());
+                                                    docMap.put("pastPaper", docTags.get(docTags.size() - 1));
+                                                    docMap.put("docDetails", docDetails);
+                                                    docMap.put("thumbNail", null);
+                                                    docMap.put("commentsCount", 0);
+                                                    docMap.put("saveCount", 0);
+                                                    docMap.put("ratersCount", 0);
+                                                    docMap.put("ratings", 0);
+                                                    docMap.put("price", 23);
+                                                    docMap.put("status", "active");
 
 
-                                                publishedDocs.set(docMap).addOnSuccessListener(aVoid -> {
-                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])));
-                                                    Map<String, Object> map = new HashMap<>();
-                                                    map.put(metaData.split("_-_")[0], FieldValue.increment(1));
-                                                    docCount.update(map).addOnSuccessListener(unused -> {
-                                                        SystemClock.sleep(2000);
-                                                        PublishApproval.this.dismiss();
-                                                        Intent intent = new Intent(getContext(), SchoolDepartmentDocuments.class);
-                                                        intent.putExtra("SchoolName", metaData.split("_-_")[0]);
-                                                        intent.putExtra("snackBar", "Successful contribution to Sch. of " +
-                                                                metaData.split("_-_")[0]);
+                                                    publishedDocs.set(docMap).addOnSuccessListener(aVoid -> {
+                                                        uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])));
+                                                        Map<String, Object> map = new HashMap<>();
+                                                        map.put(metaData.split("_-_")[0], FieldValue.increment(1));
+                                                        docCount.update(map).addOnSuccessListener(unused -> {
+                                                            SystemClock.sleep(2000);
+                                                            PublishApproval.this.dismiss();
+                                                            Intent intent = new Intent(getContext(), SchoolDepartmentDocuments.class);
+                                                            intent.putExtra("SchoolName", metaData.split("_-_")[0]);
+                                                            intent.putExtra("snackBar", "Successful contribution to Sch. of " +
+                                                                    metaData.split("_-_")[0]);
+                                                            getContext().startActivity(intent);
 
-                                                        getContext().startActivity(intent);
-
-                                                    }).addOnFailureListener(e -> {
-                                                        Log.e("Failed docCount update", e.getMessage());
-                                                    });
+                                                        }).addOnFailureListener(e -> {
+                                                            Log.e("Failed docCount update", e.getMessage());
+                                                        });
 
 //                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])))
 //                                                            .addOnSuccessListener(unused -> {
@@ -347,256 +303,135 @@ public class PublishApproval extends Dialog {
 //                                                                Toast.makeText(getContext(), "Something's missing...", Toast.LENGTH_SHORT).show();
 //                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 //                                                            });
-                                                }).addOnFailureListener(e -> {
-                                                    Toast.makeText(getContext(), "Something's up...", Toast.LENGTH_SHORT).show();
-                                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    SystemClock.sleep(1300);
-                                                    onBackPressed();
-                                                });
-                                            } else {
-                                                final StorageReference fileReferenceCover = shelfStorageRef.child(metaData.split("_-_")[5] + "_" + "Document cover");
-                                                uploadTask1 = fileReferenceCover.putFile(coverUri).addOnSuccessListener(taskSnapshot12 -> {
-                                                            Task<Uri> uriTask1 = uploadTask1.continueWithTask(task12 -> {
-                                                                if (!task12.isSuccessful()) {
-                                                                    throw task12.getException();
-                                                                }
-                                                                return fileReferenceCover.getDownloadUrl();
+                                                    }).addOnFailureListener(e -> {
+                                                        Toast.makeText(getContext(), "Something's up...", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        SystemClock.sleep(1300);
+                                                        onBackPressed();
+                                                    });
+                                                } else {
+                                                    final StorageReference fileReferenceCover = shelfStorageRef.child(metaData.split("_-_")[5] + "_" + "Document cover");
+                                                    uploadTask1 = fileReferenceCover.putFile(coverUri).addOnSuccessListener(taskSnapshot12 -> {
+                                                                Task<Uri> uriTask1 = uploadTask1.continueWithTask(task12 -> {
+                                                                    if (!task12.isSuccessful()) {
+                                                                        throw task12.getException();
+                                                                    }
+                                                                    return fileReferenceCover.getDownloadUrl();
 
 
-                                                            }).addOnCompleteListener(task1 -> {
-                                                                if (task1.isSuccessful()) {
+                                                                }).addOnCompleteListener(task1 -> {
+                                                                    if (task1.isSuccessful()) {
 //                                                String userID = FirebaseAuth.getInstance().getUid();
-                                                                    Uri coverDownloadLink = task1.getResult();
+                                                                        Uri coverDownloadLink = task1.getResult();
 //                                                            SelectedDoc selectedDoc = new SelectedDoc(metaData + "_-_"
 //                                                                    + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor,
 //                                                                    downloadLink[0].toString() + "_-_" + coverDownloadLink.toString(),
 //                                                                    user.getUid());
 
-                                                                    Map<String, Object> docMap = new HashMap<>();
-                                                                    docMap.put("docMetaData", metaData + "_-_" + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor);
-                                                                    docMap.put("search_keyword", "");
-                                                                    docMap.put("docDownloadLink", downloadLink[0].toString());
-                                                                    docMap.put("uid", user.getUid());
-                                                                    docMap.put("institution", institution);
-                                                                    docMap.put("mainField", metaData.split("_-_")[0]);
-                                                                    docMap.put("subField", metaData.split("_-_")[1]);
-                                                                    docMap.put("knowledgeBase", metaData.split("_-_")[2]);
-                                                                    docMap.put("unitCode", unitCode);
-                                                                    docMap.put("timeStamp", System.currentTimeMillis());
-                                                                    docMap.put("pastPaper", docTags.get(docTags.size() - 1));
-                                                                    docMap.put("docDetails", docDetails);
-                                                                    docMap.put("thumbNail", coverDownloadLink.toString());
-                                                                    docMap.put("commentsCount", 0);
-                                                                    docMap.put("saveCount", 0);
-                                                                    docMap.put("repostCount", 0);
-                                                                    docMap.put("ratersCount", 0);
-                                                                    docMap.put("ratings", 0);
-                                                                    docMap.put("price", 23);
-                                                                    docMap.put("status", "active");
+                                                                        Map<String, Object> docMap = new HashMap<>();
+                                                                        docMap.put("docMetaData", metaData + "_-_" + user.getUid() + "_-_" + user.getDisplayName() + "_-_" + endColor);
+                                                                        docMap.put("search_keyword", "");
+                                                                        docMap.put("docDownloadLink", downloadLink[0].toString());
+                                                                        docMap.put("uid", user.getUid());
+                                                                        docMap.put("institution", institution);
+                                                                        docMap.put("mainField", metaData.split("_-_")[0]);
+                                                                        docMap.put("subField", metaData.split("_-_")[1]);
+                                                                        docMap.put("knowledgeBase", metaData.split("_-_")[2]);
+                                                                        docMap.put("unitCode", unitCode);
+                                                                        docMap.put("timeStamp", System.currentTimeMillis());
+                                                                        docMap.put("pastPaper", docTags.get(docTags.size() - 1));
+                                                                        docMap.put("docDetails", docDetails);
+                                                                        docMap.put("thumbNail", coverDownloadLink.toString());
+                                                                        docMap.put("commentsCount", 0);
+                                                                        docMap.put("saveCount", 0);
+                                                                        docMap.put("repostCount", 0);
+                                                                        docMap.put("ratersCount", 0);
+                                                                        docMap.put("ratings", 0);
+                                                                        docMap.put("price", 23);
+                                                                        docMap.put("status", "active");
 
 
-                                                                    publishedDocs.set(docMap)
-                                                                            .addOnSuccessListener(aVoid -> {
-                                                                                uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])));
-                                                                                Map<String, Object> map = new HashMap<>();
-                                                                                map.put(metaData.split("_-_")[0], FieldValue.increment(1));
-                                                                                docCount.update(map).addOnSuccessListener(unused -> {
+                                                                        publishedDocs.set(docMap)
+                                                                                .addOnSuccessListener(aVoid -> {
+                                                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])));
+                                                                                    Map<String, Object> map = new HashMap<>();
+                                                                                    map.put(metaData.split("_-_")[0], FieldValue.increment(1));
+                                                                                    docCount.update(map).addOnSuccessListener(unused -> {
 
-                                                                                    Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
-                                                                                    SystemClock.sleep(2500);
-                                                                                    PublishApproval.this.dismiss();
+                                                                                        Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+                                                                                        SystemClock.sleep(2500);
+                                                                                        PublishApproval.this.dismiss();
 //                                                                    Intent intent = new Intent(getContext(), SchoolDepartmentDocuments.class);
 //                                                                    intent.putExtra("SchoolName", metaData.split("_-_")[0]);
 //                                                                    getContext().startActivity(intent);
-                                                                                    onBackPressed();
+                                                                                        onBackPressed();
+                                                                                    }).addOnFailureListener(e -> {
+                                                                                        Log.e("Failed docCount update", e.getMessage());
+                                                                                    });
+
+//                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])))
+//                                                            .addOnSuccessListener(unused -> {
+//                                                            })
+//                                                            .addOnFailureListener(e -> {
+//                                                                Toast.makeText(getContext(), "Something's missing...", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                                            });
                                                                                 }).addOnFailureListener(e -> {
-                                                                                    Log.e("Failed docCount update", e.getMessage());
+                                                                                    Toast.makeText(getContext(), "Something's up...", Toast.LENGTH_SHORT).show();
+                                                                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                    SystemClock.sleep(1300);
+                                                                                    onBackPressed();
                                                                                 });
 
-//                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])))
-//                                                            .addOnSuccessListener(unused -> {
-//                                                            })
-//                                                            .addOnFailureListener(e -> {
-//                                                                Toast.makeText(getContext(), "Something's missing...", Toast.LENGTH_SHORT).show();
-//                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                                            });
-                                                                            }).
-                                                                            addOnFailureListener(e -> {
-                                                                                Toast.makeText(getContext(), "Something's up...", Toast.LENGTH_SHORT).show();
-                                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                                SystemClock.sleep(1300);
-                                                                                onBackPressed();
-                                                                            });
 
-
-                                                                } else {
-                                                                    Toast.makeText(getContext(), "Select something.", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            });
-                                                            Toast.makeText(getContext(), "Document & cover published", Toast.LENGTH_SHORT).show();
-                                                            uploadProgress.setProgress(0);
+                                                                    } else {
+                                                                        Toast.makeText(getContext(), "Select something.", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+                                                                Toast.makeText(getContext(), "Document & cover published", Toast.LENGTH_SHORT).show();
+                                                                uploadProgress.setProgress(0);
 //                            final String uploadID = shelfDatabaseRef.push().getKey(); //CREATES NEW UNIQUE ID
 
 
-                                                        })
-                                                        .addOnFailureListener(e -> {
-                                                            Log.e("DocUploadError", e.getMessage());
-                                                            Toast.makeText(getContext(), "Something's preventing your upload.", Toast.LENGTH_SHORT).show();
-                                                        })
-                                                        .addOnProgressListener(taskSnapshot1 -> {
-                                                            double progress = (100.0 * taskSnapshot1.getBytesTransferred() / taskSnapshot1.getTotalByteCount());
-                                                            uploadProgress.setProgress((int) progress);
-                                                            //TO BE PLACED INSIDE A PROGRESS BAR LATER IN THE PROJECT
-                                                            //PROGRESS BAR SHALL BE SET BACK TO ZERO ON SUCCESS
-                                                        })
-                                                        .addOnCompleteListener(task13 -> uploadProgress.setVisibility(View.INVISIBLE));
+                                                            })
+                                                            .addOnFailureListener(e -> {
+                                                                Log.e("DocUploadError", e.getMessage());
+                                                                Toast.makeText(getContext(), "Something's preventing your upload.", Toast.LENGTH_SHORT).show();
+                                                            })
+                                                            .addOnProgressListener(taskSnapshot1 -> {
+                                                                double progress = (100.0 * taskSnapshot1.getBytesTransferred() / taskSnapshot1.getTotalByteCount());
+                                                                uploadProgress.setProgress((int) progress);
+                                                                //TO BE PLACED INSIDE A PROGRESS BAR LATER IN THE PROJECT
+                                                                //PROGRESS BAR SHALL BE SET BACK TO ZERO ON SUCCESS
+                                                            })
+                                                            .addOnCompleteListener(task13 -> uploadProgress.setVisibility(View.INVISIBLE));
+                                                }
+
+                                            } else {
+                                                Toast.makeText(getContext(), "Select something.", Toast.LENGTH_SHORT).show();
                                             }
-
-                                        } else {
-                                            Toast.makeText(getContext(), "Select something.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                        });
 //                            final String uploadID = shelfDatabaseRef.push().getKey(); //CREATES NEW UNIQUE ID
 
-                                })
-                                .addOnFailureListener(e -> {
-                                    Log.e("DocUploadError", e.getMessage());
-                                    Toast.makeText(getContext(), "Something's preventing your upload.", Toast.LENGTH_SHORT).show();
-                                })
-                                .addOnProgressListener(taskSnapshot -> {
-                                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                    uploadProgress.setProgress((int) progress);
-                                    //TO BE PLACED INSIDE A PROGRESS BAR LATER IN THE PROJECT
-                                    //PROGRESS BAR SHALL BE SET BACK TO ZERO ON SUCCESS
-                                }).addOnCompleteListener(task -> uploadProgress.setVisibility(View.INVISIBLE));
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("DocUploadError", e.getMessage());
+                                        Toast.makeText(getContext(), "Something's preventing your upload.", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnProgressListener(taskSnapshot -> {
+                                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                        uploadProgress.setProgress((int) progress);
+                                        //TO BE PLACED INSIDE A PROGRESS BAR LATER IN THE PROJECT
+                                        //PROGRESS BAR SHALL BE SET BACK TO ZERO ON SUCCESS
+                                    }).addOnCompleteListener(task -> uploadProgress.setVisibility(View.INVISIBLE));
 
-                    }
-                })
-                .addOnFailureListener(e -> {
+                        }
+                    })
+                    .addOnFailureListener(e -> {
 
-                });
+                    });
 
-
-    }
-
-    private void uploadDocs(ArrayList<Publishable> publishables) {
-        if (uploadTask != null && uploadTask.isInProgress()) {
-            Toast.makeText(getContext(), "Give me a sec!", Toast.LENGTH_SHORT).show();
-        }else {
-        String uid = publishables.get(0).getDocMetaData().split("_-_")[8];
-        ArrayList<String> fileDoneList = new ArrayList<>();
-        final DocumentReference uploadingUser = FirebaseFirestore.getInstance().collection("Users")
-                .document(uid);
-        for (int i = 0; i < publishables.size(); i++) {
-            final int final_i = i;
-            fileDoneList.add("Uploading");
-            final DocumentReference publishedDocs = FirebaseFirestore.getInstance().collection("Content")
-                    .document("Documents")
-                    .collection(replacer(publishables.get(final_i).getDocMetaData().split("_-_")[0]))
-                    .document(replacer(publishables.get(final_i).getDocMetaData().split("_-_")[5]));
-            final DocumentReference docCount = FirebaseFirestore.getInstance().collection("Count")
-                    .document("Documents count");
-            final StorageReference fileReference = shelfStorageRef.child(publishables.get(final_i).getDocMetaData().split("_-_")[5]);
-            publishedDocs.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
-                    Toast.makeText(getContext(), "Duplicate found...", Toast.LENGTH_SHORT).show();
-                    fileDoneList.remove(final_i);
-                    fileDoneList.add(final_i, "Done");
-//                    publishables.remove(final_i);
-                    toBePublishedAdapter.notifyItemRemoved(final_i);
-                    toBePublishedAdapter.notifyDataSetChanged();
-                    if (!fileDoneList.contains("Uploading")) {
-                        SystemClock.sleep(2500);
-                        PublishApproval.this.dismiss();
-                        Intent intent = new Intent(getContext(), SchoolDepartmentDocuments.class);
-                        intent.putExtra("SchoolName", metaData.split("_-_")[0]);
-                        getContext().startActivity(intent);
-                    }
-                } else {
-                    uploadTask = fileReference.putFile(Uri.parse(publishables.get(final_i).getDocUri())).
-                            addOnSuccessListener(taskSnapshot -> {
-                                uploadTask.continueWithTask(task -> {
-                                    if (!task.isSuccessful()) {
-                                        throw task.getException();
-                                    }
-                                    return fileReference.getDownloadUrl();
-
-
-                                }).addOnCompleteListener(task -> {
-                                    if (task.isSuccessful()) {
-                                        Uri dl = task.getResult();
-                                        fileDoneList.remove(final_i);
-                                        fileDoneList.add(final_i, "Done");
-                                        String metaData = publishables.get(final_i).getDocMetaData();
-                                        Map<String, Object> docMap = new HashMap<>();
-                                        docMap.put("docMetaData", metaData);
-                                        docMap.put("search_keyword", "");
-                                        docMap.put("docDownloadLink", dl.toString());
-                                        docMap.put("uid", uid);
-                                        docMap.put("institution", institution);
-                                        docMap.put("mainField", metaData.split("_-_")[0]);
-                                        docMap.put("subField", metaData.split("_-_")[1]);
-                                        docMap.put("knowledgeBase", metaData.split("_-_")[2]);
-                                        docMap.put("unitCode", publishables.get(final_i).getUnitCode());
-                                        docMap.put("timeStamp", System.currentTimeMillis());
-                                        docMap.put("pastPaper", publishables.get(final_i).getAllTags().get(publishables.get(final_i).getAllTags().size() - 1));
-                                        docMap.put("docDetails", publishables.get(final_i).getDocDetails());
-                                        docMap.put("thumbNail", "");
-                                        docMap.put("commentsCount", 0);
-                                        docMap.put("saveCount", 0);
-                                        docMap.put("repostCount", 0);
-                                        docMap.put("ratersCount", 0);
-                                        docMap.put("ratings", 0);
-                                        docMap.put("price", 23);
-                                        docMap.put("status", "active");
-
-                                        publishedDocs.set(docMap)
-                                                .addOnSuccessListener(aVoid -> {
-                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(publishables.get(final_i).getDocMetaData().split("_-_")[0])));
-                                                    Map<String, Object> map = new HashMap<>();
-                                                    map.put(metaData.split("_-_")[0], FieldValue.increment(1));
-                                                    docCount.update(map).addOnSuccessListener(unused -> {
-                                                        Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
-                                                        toBePublishedAdapter.notifyItemRemoved(final_i);
-                                                        toBePublishedAdapter.notifyDataSetChanged();
-                                                        if (!fileDoneList.contains("Uploading")) {
-                                                            SystemClock.sleep(2500);
-                                                            PublishApproval.this.dismiss();
-                                                            Intent intent = new Intent(getContext(), SchoolDepartmentDocuments.class);
-                                                            intent.putExtra("SchoolName", metaData.split("_-_")[0]);
-                                                            getContext().startActivity(intent);
-                                                        }
-                                                    }).addOnFailureListener(e -> {
-
-                                                    });
-
-//                                                    uploadingUser.update("schoolsPublished", FieldValue.arrayUnion(replacer(metaData.split("_-_")[0])))
-//                                                            .addOnSuccessListener(unused -> {
-//                                                            })
-//                                                            .addOnFailureListener(e -> {
-//                                                                Toast.makeText(getContext(), "Something's missing...", Toast.LENGTH_SHORT).show();
-//                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                                            });
-                                                }).
-                                                addOnFailureListener(e -> {
-                                                    Toast.makeText(getContext(), "Something's up...", Toast.LENGTH_SHORT).show();
-                                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    SystemClock.sleep(1300);
-                                                    onBackPressed();
-                                                });
-
-                                    }
-                                });
-
-
-                            }).addOnFailureListener(e -> {
-                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                }
-            });
         }
-        }
-
 
     }
 

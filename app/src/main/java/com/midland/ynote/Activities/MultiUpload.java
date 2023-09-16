@@ -2,7 +2,10 @@ package com.midland.ynote.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.SharedPreferences;
+=======
+>>>>>>> origin/master
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -24,8 +27,11 @@ import com.bumptech.glide.Glide;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+=======
+>>>>>>> origin/master
 import com.midland.ynote.Dialogs.LogInSignUp;
 import com.midland.ynote.Dialogs.PublishApproval;
 import com.midland.ynote.Objects.MultiFileObj;
@@ -34,7 +40,10 @@ import com.midland.ynote.R;
 import com.midland.ynote.Utilities.CustomScrollView;
 import com.midland.ynote.Utilities.FilingSystem;
 
+<<<<<<< HEAD
 import java.lang.reflect.Type;
+=======
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -90,7 +99,11 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null){
+<<<<<<< HEAD
             LogInSignUp logInSignUp = new LogInSignUp(MultiUpload.this);
+=======
+            LogInSignUp logInSignUp = new LogInSignUp(getApplicationContext());
+>>>>>>> origin/master
             logInSignUp.show();
         }else {
            uid = user.getUid();
@@ -331,6 +344,7 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
             docUri = objs1.get(index - 1).getFileUri();
             docSize = String.valueOf(objs1.get(index - 1).getFileSize());
 
+<<<<<<< HEAD
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("User", Context.MODE_PRIVATE);
             String json = preferences.getString("User", "");
             Gson gson = new Gson();
@@ -340,6 +354,8 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
                 FilingSystem.Companion.setInstitution(userDetail.get(5));
             }
 
+=======
+>>>>>>> origin/master
             if (next.getText().equals("Finish")){
                 if (pastPaper == null || pastPaper.equals("")){
                     Toast.makeText(getApplicationContext(), "Is this document a past paper?.", Toast.LENGTH_SHORT).show();
@@ -360,7 +376,10 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
                     FilingSystem.Companion.setUnitCode(unitCode);
                     FilingSystem.Companion.setKnowledgeBase(knowledgeBase);
                     FilingSystem.Companion.setDocDetail(docDetail);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
                     if (!unitCode.trim().equals("")) {
                         FilingSystem.Companion.getAllTags().add(unitCode);
                     }
@@ -387,6 +406,7 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
                     if (!publishables.contains(publishable)) {
                         publishables.add(publishable);
                     }
+<<<<<<< HEAD
                     if (user == null){
                         LogInSignUp logInSignUp = new LogInSignUp(MultiUpload.this);
                         logInSignUp.show();
@@ -399,6 +419,12 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
 
                 }
 
+=======
+                    PublishApproval publishApproval1 = new PublishApproval(MultiUpload.this,
+                            publishables);
+                    publishApproval1.show();
+                }
+>>>>>>> origin/master
             }else
             {
                 if (pastPaper == null || pastPaper.equals("")){
@@ -576,5 +602,8 @@ public class MultiUpload extends AppCompatActivity implements AdapterView.OnItem
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }

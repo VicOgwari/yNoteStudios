@@ -5,11 +5,9 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -43,7 +41,6 @@ import com.midland.ynote.Objects.HomeSliderObj
 import com.midland.ynote.R
 import com.midland.ynote.Utilities.AdMob.Companion.checkConnection
 import com.ortiz.touchview.TouchImageView
-import java.net.URLEncoder
 
 /**
  * A simple [Fragment] subclass.
@@ -72,8 +69,6 @@ class MainFragment : Fragment() {
     var recentDocsRel: RelativeLayout? = null
     var pinned: PinnedDocsGridAdapter? = null
     private var flag: String? = null
-    private var mProgressDialog: ProgressDialog? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +89,6 @@ class MainFragment : Fragment() {
         localContentRel = root.findViewById(R.id.localContentRel)
         recentDocsRel = root.findViewById(R.id.recentDocsRel)
         touchIV = root.findViewById(R.id.touchIV)
-        toggleProfile = root.findViewById(R.id.toggleProfile)
-        toggleProfile!!.bringToFront()
-        val homeIm = root.findViewById<ImageView>(R.id.homeImage)
         val libraryButton = root.findViewById<Button>(R.id.libraryButton)
         val schoolsButton = root.findViewById<Button>(R.id.schoolsButton)
         val studioButton = root.findViewById<Button>(R.id.studioButton)
@@ -137,7 +129,7 @@ class MainFragment : Fragment() {
         navRight1 = root.findViewById(R.id.navRight1)
         searchDocs = root.findViewById(R.id.searchDocs)
         searchRecentDocs = root.findViewById(R.id.searchRecentDocs)
-//        homeVP!!.bringToFront()
+        homeVP!!.bringToFront()
         val glowLay = root.findViewById<LinearLayout>(R.id.linLayGlow)
         animatorSet = AnimatorSet()
         slideHandler = Handler()
@@ -148,85 +140,10 @@ class MainFragment : Fragment() {
                 if (position % 4 == 0 && position != 0) {
                     slideHandler!!.postDelayed(slideRunnable, 3000)
                 } else {
-                    slideHandler!!.postDelayed(slideRunnable, (3600 * 2).toLong())
+                    slideHandler!!.postDelayed(slideRunnable, (3500 * 2).toLong())
                 }
             }
         })
-        homeVP!!.visibility = View.GONE
-        homeIm.visibility = View.VISIBLE
-        toggleProfile!!.setBackgroundColor(Color.YELLOW)
-        toggleProfile!!.setImageResource(R.drawable.ic_people)
-
-        toggleProfile!!.setOnClickListener {
-            if (homeVP!!.visibility == View.VISIBLE){
-                homeVP!!.visibility = View.GONE
-                homeIm.visibility = View.VISIBLE
-                toggleProfile!!.setBackgroundColor(Color.YELLOW)
-                toggleProfile!!.setImageResource(R.drawable.ic_people)
-            }else
-                if (homeVP!!.visibility == View.GONE)  {
-                    homeVP!!.visibility = View.VISIBLE
-                    homeIm.visibility = View.GONE
-                    toggleProfile!!.setBackgroundColor(Color.BLACK)
-                    toggleProfile!!.setImageResource(R.drawable.ic_stop_circle)
-                    homeSliderObjs?.shuffle()
-                    val homeSliderAdt = HomeSliderAdt(context!!, activity, homeSliderObjs, null)
-                    homeSliderAdt.notifyDataSetChanged()
-                    homeSliderRV!!.adapter = homeSliderAdt
-                    homeVP!!.adapter = homeSliderAdt
-                }
-        }
-
-        homeIm.setOnClickListener {
-//            Toast.makeText(context, "Open source education", Toast.LENGTH_SHORT).show();
-            mProgressDialog = ProgressDialog(context)
-            mProgressDialog!!.setMessage("Please wait while we fetch the disclaimer..")
-            mProgressDialog!!.setTitle("Open source education")
-            mProgressDialog!!.isIndeterminate = true
-            mProgressDialog!!.show()
-            FirebaseFirestore.getInstance().collection("Content")
-                .document("Documents")
-                .collection("yNoteDocs")
-                .document("Disclaimerpdf").get().addOnSuccessListener {
-                    if (it.exists()) {
-                        val mD = it.getString("docMetaData")
-                        val dL = it.getString("docDownloadLink")
-                        val sC = it.get("saveCount").toString()
-                        val cC = it.get("commentsCount").toString()
-                        val finalLink = "http://docs.google.com/gview?embedded=true&url=" +
-                                URLEncoder.encode(dL!!.split("_-_")[0])
-                        val endColor: Int =
-                            mD!!.split("_-_".toRegex()).toTypedArray()[10].toInt()
-
-                        val intent = Intent(context, DocumentLoader::class.java)
-                        intent.putExtra(
-                            "school",
-                            mD.split("_-_".toRegex()).toTypedArray()[0]
-                        )
-                        intent.putExtra(
-                            "publisherUid",
-                            mD.split("_-_".toRegex()).toTypedArray()[8]
-                        )
-                        intent.putExtra("title", mD.split("_-_".toRegex()).toTypedArray()[5])
-                        intent.putExtra("pinCount", sC)
-                        intent.putExtra("comCount", cC)
-                        intent.putExtra("docUrl", finalLink)
-                        intent.putExtra("endColor", endColor.toString())
-                        intent.putExtra("publisher", "N/A")
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(context, "Nothing found.", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                    mProgressDialog!!.dismiss()
-
-                }
-                .addOnFailureListener {
-                    mProgressDialog!!.dismiss()
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                }
-        }
-
         val fadeOut = ObjectAnimator.ofFloat(glowLay, "alpha", 0.5f, 0.1f)
         fadeOut.duration = 500
         val fadeIn = ObjectAnimator.ofFloat(glowLay, "alpha", 0.1f, 0.5f)
@@ -344,17 +261,6 @@ class MainFragment : Fragment() {
             homeSliderRV!!.adapter = homeSliderAdt
             homeVP!!.adapter = homeSliderAdt
         }.addOnFailureListener { e: Exception? -> }
-
-        Glide.with(context!!).load(R.drawable.lib1).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.libraryImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.stud_background22).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.studioImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.lecturehall).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.lecturesImage) as ImageView))
-        Glide.with(context!!).load(R.drawable.schools_acad_disciplines).thumbnail(0.9.toFloat())
-            .into((root.findViewById<View>(R.id.academicDis) as ImageView))
-
-
         profileButton.setOnClickListener { v: View? ->
 //            Snackbar.make(v.findViewById(R.id.homeRel), "You can't flex like this..", BaseTransientBottomBar.LENGTH_LONG).show();
             val intent = Intent(context, UserProfile2::class.java)
@@ -413,6 +319,14 @@ class MainFragment : Fragment() {
                 }
             }
         }
+        Glide.with(context!!).load(R.drawable.lib1).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.libraryImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.stud_background22).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.studioImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.lecturehall).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.lecturesImage) as ImageView))
+        Glide.with(context!!).load(R.drawable.schools_acad_disciplines).thumbnail(0.9.toFloat())
+            .into((root.findViewById<View>(R.id.academicDis) as ImageView))
         studioButton.setOnClickListener { v: View? ->
             if (ContextCompat.checkSelfPermission(
                     context!!, Manifest.permission.CAMERA
@@ -514,7 +428,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
         return root
     }
 
@@ -557,7 +470,6 @@ class MainFragment : Fragment() {
 
     companion object {
         var touchIV: TouchImageView? = null
-        var toggleProfile: ImageButton? = null
         private const val READ_PERMISSION = 99
 
         // TODO: Rename parameter arguments, choose names that match
